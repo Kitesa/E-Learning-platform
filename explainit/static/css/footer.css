@@ -1,0 +1,24 @@
+p {
+    text-align: center;
+    padding: 8px;
+}
+
+.body-footer {
+    display: flex;
+    background-color: #dfdfdf;
+    height: 70px;
+    width: 100%;
+    border-top: 1px solid #CCCCCC;
+    align-content: center;
+    margin: 0px;
+}
+
+.body-footer .footer-left{
+    width: 33%;
+}
+.body-footer .footer-center{
+    width: 33%;
+}
+.body-footer .footer-right{
+    width: 33%;    
+}

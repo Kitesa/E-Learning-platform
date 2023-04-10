@@ -1,0 +1,56 @@
+{% load static %}
+<header class="header">
+   <nav class="navbar">
+      <a href="{% url 'homepage:homepage' %}">
+       <div class="logo">
+          
+       </div>
+       </a>
+      {% if user.is_authenticated %}
+         <div class="nav_bar_links">
+            <ul>
+               <div>
+                  <li><a href="#">COURSES</a></li>
+               </div>
+               <div>
+                  <li><a href="#">LIBRARY</a></li>
+               </div>
+               <div>
+                  <li><a href="#">Q&A</a></li>
+               </div>
+            </ul>
+         </div>
+         <div class="humbergor_icon">
+            <img src="{% static 'images/wall1.png' %}"alt="" onclick="showHumbergerDropDown()">
+         </div>
+         <div class="user_icon">
+            <img src="{% static 'images/user.jpg' %}"alt="" onclick="showDropDown()">
+         </div>
+
+         {% include 'homepage_snippets/humberger_drop_down.html' %}
+                   {% include 'homepage_snippets/drop_down.html' %}
+      {% else %}
+
+      
+         <div class="nav_bar_links">
+            <ul>
+               <div>
+               <li><a href="#">COURSES</a></li>
+               </div>
+               <div>
+               <li><a href="#">TEACHERS</a></li>
+               </div>
+                <div>
+               <li><a href="#">ABOUT</a></li>
+               </div>
+                <div>
+               <li><a href="#">Q&A</a></li>
+               </div>
+               <div>
+               <li><a href="{% url 'accounts:register-page'%}">LOGIN | SIGNUP</a></li>
+               </div>
+            </ul>
+         </div>
+      {%endif%}
+   </nav>
+</header>

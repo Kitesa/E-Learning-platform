@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/all_form.css' %}">
+     <link rel="stylesheet" type="text/css" href="{% static 'css/drop_down.css' %}">
+  
+    <title>{% if title %}
+            {{title}}
+            {% else %}
+            ExplainIT
+            {% endif %}
+    </title> 
+  </head>
+
+  <body>
+    {% include 'homepage/navbar.html' %}
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <p class="warning">{{message}}</p>
+
+            {% endfor %}
+        {% endif %}
+       {% block mainbody%}{%endblock%} 
+    </div>
+    {% include 'homepage/footer.html' %}
+    <script type="text/javascript" src="{% static 'js/drop_down.js' %}"></script>
+  </body>
+</html>

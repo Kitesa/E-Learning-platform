@@ -1,0 +1,107 @@
+.header {
+    background-color: #dfdfdf;
+    height: 80px;
+    width: 100%;
+    border-bottom: 1px solid #CCCCCC;
+    display: flex;
+    position: fixed;
+    top: 0;
+    margin: 0px;
+}
+
+.navbar{
+    display: flex;
+    width: 100%;
+    padding-right: 20px;
+}
+
+.navbar .logo, .fieldset-header {
+    background: url("../images/logo.png") no-repeat;
+    background-position: center;
+    height: 40px;
+    display: block;
+    width: 100px;
+    margin: 20px;
+    overflow: hidden;
+
+}
+
+.navbar .logo:hover{
+    cursor: pointer;
+}
+
+.nav_bar_links{
+    width: 90%;
+    flex-grow: 1;
+    overflow: hidden;
+    padding-right: 10px;
+}
+
+.nav_bar_links ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    justify-content: flex-end;
+    flex-grow:  1;
+}
+.nav_bar_links ul div{
+    padding: 1.5%;
+}
+.nav_bar_links ul div:hover {
+    font-weight: bold;
+    background-color: #fafafa;
+    border-radius: 5%;
+}
+
+.nav_bar_links ul div li a{
+    text-decoration: none;
+    font-size: 18px;
+    color: grey;
+    font-weight: bold;
+}
+
+.for-mobile{
+    display: none;
+}
+.user_icon, .humbergor_icon{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.user_icon:hover{
+    cursor: pointer;
+}
+.user_icon img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 10px;
+}
+.humbergor_icon{
+    display: none;
+}
+
+
+@media screen and (max-width: 500px){
+
+    .nav_bar_links ul {
+        display: none;
+    }
+    .nav_bar_links{
+        width: 25%;
+    }
+    .humbergor_icon{
+        display: flex;
+    }
+    .humbergor_icon:hover{
+        cursor: pointer;
+    }
+    .humbergor_icon img{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin: 10px;
+    }
+}
+
