@@ -1,0 +1,163 @@
+.form-container-section{
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.all-form-container{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.all-form-container .all-form-section{
+	width: 50%;
+	background-color: #fff;
+}
+.all-form-section h3{
+	color: grey;
+}
+.all-form-container .all-page-sidebar{
+	padding: 10px;
+	width: 50%;
+	display: block;
+}
+.all-form-container .all-page-sidebar header{
+	margin-top: 10px;
+	font-size: 20px;
+	color: grey;
+}
+.all-form-container form input,
+.all-form-container select{
+	display: block;
+	padding: 10px 0px 10px 10px;
+	margin: 10px;
+	width: 98%;
+	margin-left: 0px;
+}
+
+.all-form-container fieldset{
+	border: 1px solid #CACACA;
+	width: 90%;
+	background-color: #eaeaea;
+	margin-right: 0px;
+	padding: 20px;
+}
+.all-form-container fieldset legend{
+	color: gray;
+	font-weight: bold;
+}
+
+.all-form-container form label{
+	display: block;
+	padding-top: 10px;
+	color: grey;
+	font-weight: bold;
+}
+
+.all-form-container form input:focus {
+	background-color: #fff;
+	color: inherit;
+	font-weight: bold;
+}
+
+.all-form-container .form-button{
+	width: 100%;
+	margin-top: 10px;
+}
+
+.form-button button{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+	font-size: 20px;
+	border: 1px solid #ccc;
+	color: grey;
+	font-weight: bold;
+}
+.form-button button:hover{
+	cursor: pointer;
+	background-color: grey;
+	color: #fff;
+}
+
+.form-header{
+	background-color: inherit;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+}
+.form-header h2{
+	padding: 0px;
+	margin-top: auto;
+	margin-bottom: auto;
+	color: grey;
+	font-weight: bold;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+}
+
+.under-form{
+	display: flex;
+	justify-content: center;
+}
+.under-form small a{
+	text-decoration: none;
+	font-weight: bold;
+	margin-right: 10px;
+	color: grey;
+}
+.all-form-section p,
+.all-form-section p a{
+	text-decoration: none;
+	color: grey;
+}
+
+.fieldset-header {
+    background: url("../images/logo.png") no-repeat;
+    background-position: center;
+    height: 40px;
+    display: block;
+    width: 100px;
+    overflow: hidden;
+
+}
+@media screen and (max-width: 800px){
+	.all-form-container .all-form-section{
+		width: 100%;
+		padding: 0px;
+		margin: 0px;
+	}
+	.all-form-container .all-page-sidebar{
+		display: none;
+	}
+}
+
+@media screen and (max-width: 500px){
+	.all-form-container .all-form-section{
+		margin-right: 10px;
+	}
+	.all-form-container fieldset{
+		width: 92%;
+	}
+	.form-button button{
+		width: 100%;
+		margin-right: 0px;
+		margin-left: 0px;
+	}
+}
+@media screen and (max-width: 400px){
+	.all-form-container .all-form-section{
+		margin-right: 20px;
+	}
+	.all-form-container fieldset{
+		width: 90%;
+	}
+}

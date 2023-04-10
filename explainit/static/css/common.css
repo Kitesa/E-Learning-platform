@@ -1,0 +1,51 @@
+::-webkit-scrollbar{
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-track{
+    background: #fff;
+
+}
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+}
+::-webkit-scrollbar-button{
+    display: none;
+}
+
+body {
+    color: #484848;
+    font-size: 14px;
+    font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    position: relative;
+    display: block;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 95%;
+    margin: auto;
+    margin-top: 90px;
+}
+.container .warning{
+    color: red;
+    font-size: 20px;
+}
+@media all and (max-width: 900px){
+    .container{
+        width: 98%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+@media screen and (max-width: 500px){
+    html, body {
+	   color: #000;
+	   width: 100%;
+	   margin: 0px;
+	   padding: 0px;
+	   overflow-x: hidden;
+    }
+}

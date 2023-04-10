@@ -1,0 +1,86 @@
+.drop-down-options{
+    position: absolute;
+    top: 70px;
+    right: 0px;
+    width: 250px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+.drop-down-options.show-drop-down{
+    max-height: 450px;
+}
+.drop-down-options.humberger-show-drop-down{
+    max-height: 450px;
+}
+
+.sub-drop-down-options{
+    background: #fff;
+    padding: 20px;
+    margin: 10px;
+}
+
+.sub-drop-down-options hr{
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background: #ccc;
+    margin: 5px 0 10px;
+}
+.user-info{
+    display: flex;
+    align-items: center;
+}
+
+.user-info h3{
+    font-weight: 500;
+}
+.user-info img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 10px;
+}
+.user-info h3 a{
+    text-decoration: none;
+    color: grey;
+    font-weight: bold;
+}
+.sub-drop-down-links{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #525252;
+}
+.sub-drop-down-links p{
+    width: 100%;
+    padding-left: 0px;
+    text-align: left;
+}
+.sub-drop-down-links img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 8px;
+    margin-right: 10px;
+}
+.sub-drop-down-links span{
+    font-size: 22px;
+    transform: transform 0.5s;
+}
+
+.sub-drop-down-links:hover span{
+    transform: translateX(5px);
+}
+
+.sub-drop-down-links:hover p{
+    font-weight: 600;
+}
+
+@media screen and (max-width: 500){
+    .drop-down-options{
+        right: 0;
+        width: 100%;
+    }
+}
