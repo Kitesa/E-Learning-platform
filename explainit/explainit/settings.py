@@ -87,7 +87,11 @@ DATABASES = {
         'NAME': 'explainit',
         'HOST': 'localhost',
         'PORT': '3306',
+<<<<<<< HEAD
         'USER': 'django',
+=======
+        'USER': 'root',
+>>>>>>> 7c47e3d4debdf2ad7c6617820ca5d4349d76d56b
         'PASSWORD': '12345',
 
     }
