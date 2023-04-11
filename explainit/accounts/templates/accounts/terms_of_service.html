@@ -1,0 +1,8 @@
+{% extends 'homepage/base.html' %}
+{% block mainbody%}
+{% for term_item in terms_of_services %}
+	<h1>{{term_item.title|safe}}</h1>
+	<p>{{term_item.terms_of_service|safe}}</p>
+{% endfor %}
+<a href="">Agree and continue to login</a>
+{% endblock mainbody %}

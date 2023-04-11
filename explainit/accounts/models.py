@@ -2,18 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from PIL import Image  
-
-
-class Gender(models.Model):
-	'''
-		A MODEL FOR GENDER OF USER ONLY SUPER USER 
-		HAVE PERMISSION TO INTERACT WITH THIS MODEL
-	'''
-	gender_option= models.CharField(max_length=10)
-
-	def __str__(self):
-		return str(self.gender)
-
+from ckeditor.fields import RichTextField 
 
 class UserAccountManager(BaseUserManager):
 	'''
@@ -74,7 +63,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
 	birth_date                      = models.DateTimeField(null=True)
 	date_joined             		= models.DateTimeField(verbose_name='Date Joined', auto_now_add=True)
 	last_login              		= models.DateTimeField(verbose_name='Last Login', auto_now=True)
-	gender                  		= models.ForeignKey(Gender, related_name='gender', on_delete=models.CASCADE, null=True, blank=True)
+	gender                  		= models.CharField(max_length=5, null=False, blank=False, default='M')
 	is_admin                		= models.BooleanField(default=False)
 	is_active               		= models.BooleanField(default=True)
 	is_staff                		= models.BooleanField(default=False)
@@ -127,3 +116,24 @@ class Account(AbstractBaseUser, PermissionsMixin):
 		return reverse('/')
 
 
+class TermsOfService(models.Model):
+	"""
+		A DB MODEL CLASS TO STORE TERMS OF SERVICES
+		RULES AND REGULATIONS THAT OUR USER NEED TO AGREE WITH
+	"""
+
+	title                   = models.CharField(max_length = 254)
+	terms_of_service        = RichTextField()
+
+	def __str__(self):
+		return self.title
+
+
+class OurTeacherProfile(object):
+	"""
+		A DB MODEL CLASS TO HOLD INFORMATION ABOUT OUR
+		TEACHERS
+	"""
+	
+
+		

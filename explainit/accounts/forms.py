@@ -4,11 +4,17 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class AccountCreationForm(UserCreationForm):
+    gender_choices = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('N', 'Other'),
+        )
     email 				= forms.EmailField(max_length = 70)
     username 			= forms.CharField(max_length = 30)
     first_name			= forms.CharField(max_length = 30)
     Phone_Number 		= forms.CharField(max_length=12)
     birth_date          = forms.DateTimeField()
+    gender              = forms.ChoiceField(choices=gender_choices)
     
     class Meta:
         model = Account
