@@ -1,0 +1,144 @@
+.hr{
+    display: none;
+}
+
+.course-home-section{
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #E7E7E7;
+}
+
+.course-article-container{
+    display: block;
+    border: 1px solid #ccc;
+    margin: 10px;
+    width: 30%;
+}
+
+.course-article-container:hover{
+	background-color: #fff;
+}
+ 
+.course-article-header-container{
+    margin-top: 0px;
+    padding: 0px;
+    display: flex;
+    max-height: 60px;
+}
+.course-header{
+    margin-left: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 10px;
+    padding-left: 20px;
+    width: 80%;
+}
+
+.enroll{
+	width: 100px;
+    height: 30px;
+    margin: 20px;
+    border-radius: 5%;
+}
+.enroll a{
+	text-decoration: none;
+	font-weight: bold;
+	font-family: Roboto;
+    padding: 10px;
+    border: 1px solid gray;
+    color: gray;
+}
+.enroll a:hover{
+    background-color: gray;
+    color: #fff;
+}
+.course-header a{
+    text-decoration: none;
+    color: gray;
+    font-weight: bold;
+    margin: auto;
+    text-align: left;
+}
+
+.course-header small{
+    margin-top: 5px;
+    color: gray;
+}
+
+.course-poster-container{
+    display: flex;
+    width: 100%;
+    background-color: #fff;
+} 
+
+.course-poster{
+    width: 100%;
+}
+
+.course-poster img{
+    width: 100%;
+    height: 100%;
+}
+ 
+.course-detail-container{
+    display: block;
+    width: 60%;
+    height: 100%;
+    margin: auto;
+
+}
+.course-detail-article p{
+    text-align: justify;
+}
+
+@media screen and (max-width: 1200px){
+    .course-home-section{
+        padding: 0px;
+        justify-content: flex-start;
+    }
+     .course-article-container{
+        padding: 0px;
+        justify-content: flex-start;
+        width: 46%;
+        margin: 12px;
+    }
+
+}
+
+@media screen and (max-width: 900px){
+    .course-article-container{
+        width: 46%;
+        margin: 10px;
+    }
+    .course-detail-container{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 800px){
+    .course-home-section{
+        width: 100%;
+        margin: auto;
+        justify-content: center;
+    }
+    .course-article-container{
+        width: 46%;
+    }
+
+}
+
+@media screen and (max-width: 600px){
+    .course-home-section{
+        justify-content: center;
+    }
+    .course-article-container{
+        width: 100%;
+    }
+    .hr{
+        display: block;
+    }
+}

@@ -79,7 +79,6 @@
 	font-weight: bold;
 }
 .form-button button:hover{
-	cursor: pointer;
 	background-color: grey;
 	color: #fff;
 }
@@ -104,16 +103,6 @@ hr {
     background: #ccc;
 }
 
-.under-form{
-	display: flex;
-	justify-content: center;
-}
-.under-form small a{
-	text-decoration: none;
-	font-weight: bold;
-	margin-right: 10px;
-	color: grey;
-}
 .all-form-section p,
 .all-form-section p a{
 	text-decoration: none;
@@ -140,7 +129,7 @@ hr {
 	}
 }
 
-@media screen and (max-width: 500px){
+@media all and (max-width: 500px){
 	.all-form-container .all-form-section{
 		margin-right: 10px;
 	}
@@ -153,7 +142,7 @@ hr {
 		margin-left: 0px;
 	}
 }
-@media screen and (max-width: 400px){
+@media all and (max-width: 400px){
 	.all-form-container .all-form-section{
 		margin-right: 20px;
 	}
@@ -161,3 +150,4 @@ hr {
 		width: 90%;
 	}
 }
+
