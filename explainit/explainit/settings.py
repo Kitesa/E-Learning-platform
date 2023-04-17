@@ -56,9 +56,9 @@ INSTALLED_APPS = [
 ]
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUD_API_KEY')
-    'API_SECRET': os.environ.get('CLOUD_API_SECRET')
+    'CLOUD_NAME': 'drlk0wyjm',
+    'API_KEY': '698257723934363',
+    'API_SECRET': 'obVZ5ShQ0jBWZQ0q88-xraje-Rk'
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 #CRISPY TEMPLATE PACK FOR FORM RENDERING
