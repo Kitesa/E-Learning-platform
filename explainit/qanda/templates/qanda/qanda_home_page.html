@@ -1,0 +1,66 @@
+{% extends 'homepage/base.html' %}
+{% load static %}
+{% block mainbody%}
+<section class="auth-section">
+		<div class="center-content">
+			<div class="question-sth-you-know-container">
+				{% if user.is_authenticated %}
+					<div class="user-pp">
+						<img src="{{ user.profile_pic.image.url }}">
+					</div>
+				{% endif %}
+					<div class="question-sth-you-know-form-container">
+						<a href="{% url 'qanda:question-creation-view' %}" >
+						<div class="question-sth-you-know-form">	
+								Ask question...
+						</div>
+						</a>
+						<div class="question-option-container">	
+							<span>
+								<a href="	">General</a>
+							</span>
+							<span>
+								<a href="	">Coding</a>
+							</span>
+							<span>
+								<a href="	">Science</a>
+							</span>
+						</div>
+					</div>
+			</div>
+			{% for question in suggested_questions %}
+			<article class="question-container" draggable="true">
+				<header class="question-header">
+					<div class="user-pp">
+							<img src="{{question.author.profile_pic.image.url}}">
+					</div>
+					<div class="about-question-author">
+						<a href="{% url 'accounts:account-detail-view' question.author.pk %}">{{question.author.full_name}}</a>
+						<small>Lecturer at <a href=""><strong>Dilla university</strong></a></small>
+					</div>
+				</header>
+				<div class="question-body">
+					<h5>#{{question.question_title}}</h5>
+					{{question.question_content|safe}}
+				</div>
+				<footer class="question-footer">
+					<div>
+						<a href="">Reask</a>
+					</div>
+					<div>
+						<a href="">Answer</a>
+					</div>
+					<div>
+						<a href="">Share</a>
+					</div>
+					<div>
+						<a href="">Invite</a>
+					</div>
+					<div>
+						<a href="">Forward</a>
+					</div>					
+				</footer>
+			</article>
+			{% endfor %}
+</section>
+{%endblock mainbody%}
