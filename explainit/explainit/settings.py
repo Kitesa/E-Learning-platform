@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+import cloudinary_storage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,6 +35,8 @@ INSTALLED_APPS = [
     #MYAPPS
     'accounts',
     'homepage',
+    'courses',
+    'qanda',
 
     #DJANGO BUILTIN APPS
     'django.contrib.admin',
@@ -43,9 +46,23 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
     #THIRD PARTY APPS
+    'cloudinary_storage',
+    'cloudinary',
     'crispy_forms',
+    'ckeditor',
+    'crispy_bootstrap4',
 ]
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUD_API_KEY')
+    'API_SECRET': os.environ.get('CLOUD_API_SECRET')
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+#CRISPY TEMPLATE PACK FOR FORM RENDERING
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -142,3 +159,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #CUSTOM AUTH_USER_MODEL
 #TELL DJANGO WHERE CUSTOM USER AUTHENTICATION MODEL IS
 AUTH_USER_MODEL = 'accounts.Account'
+
+#TELL DJANGO WHERE TO LAND ON LOGIN
+LOGIN_REDIRECT_URL = 'homepage:homepage'
+LOGIN_URL = 'accounts:login-page'
+
+#TELL DJANGO WHERE TO LAND ON LOGIN
+LOGOUT_REDIRECT_URL = 'homepage:homepage'
+LOGOUT_URL = 'accounts:login-page'
+
+
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
