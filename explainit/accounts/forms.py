@@ -1,9 +1,14 @@
-from .models import Account
+from .models import (Account,
+                        ProfilePic,
+                        )
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 
 class AccountCreationForm(UserCreationForm):
+    '''
+    Form class for user registration
+    '''
     gender_choices = (
         ('M', 'Male'),
         ('F', 'Female'),
@@ -18,10 +23,13 @@ class AccountCreationForm(UserCreationForm):
     
     class Meta:
         model = Account
-        fields = ('first_name', 'last_name', 'username', 'Phone_Number', 'email', 'gender', 'birth_date', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'username', 'Phone_Number', 'email', 'gender', 'birth_date', 'password1', 'password2', 'stay_logged_in')
 
 
     def clean_Phone_Number(self):
+        '''
+        take some cleaning on user phone number before registration
+        '''
         Phone_Number = self.cleaned_data['Phone_Number']
 
         if Phone_Number[:4] != "+251":
@@ -35,17 +43,42 @@ class AccountCreationForm(UserCreationForm):
 
 
     def clean_email(self):
+        '''
+        clean user email before sending to database
+        on registration
+        '''
         email = self.cleaned_data['email'].lower()
         try:
             account = Account.objects.exclude(pk=self.instance.pk).get(email=email)
         except Account.DoesNotExist:
             return email
-        raise forms.ValidationError('Email "%s" is already in use.' % email)
+        raise forms.ValidationError(f'Email {email} is already in use.')
 
     def clean_username(self):
+        '''
+        clean username before sending to database
+        on registration
+        '''
         username = self.cleaned_data['username']
         try:
             account = Account.objects.exclude(pk=self.instance.pk).get(username=username)
         except Account.DoesNotExist:
             return username
-        raise forms.ValidationError('Username "%s" is already in use.' % username)
+        raise forms.ValidationError(f'Username {username} is already in use.')
+
+class UserUpdateForm(forms.ModelForm):
+    '''
+    Model form for username update
+    '''
+    class Meta:
+        model   = Account
+        fields  = ['first_name', 'last_name','username']
+        email   = forms.EmailField()
+
+class ProfilePicUploadForm(forms.ModelForm):
+    '''
+    Model form for profile picture upload and update
+    '''
+    class Meta:
+        model   = ProfilePic
+        fields  = ["image", ]

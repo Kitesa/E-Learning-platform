@@ -1,17 +1,23 @@
 {% extends 'homepage/base.html'%}
 {% load static %}
-
 {% block mainbody%}
 
 <section class="profile-container">
 	<div class="profile-left">
 		<div class="user-pp">
-			<a href="{% url 'accounts:user-profile-pic-update-view' user.pk %}">
-			<img src="{{user_image}}">
+			<a href="">
+				<img src="{{other_user.profile_pic.image.url}}">
 			</a>
-			<small><a href="{% url 'accounts:user-profile-update-view'%}">{{user.first_name}} {{user.last_name}}</a></small>
-
-			<small>Lecturer at <a href=""><strong>Dilla university</strong></a></small>
+			<small><a href="">{{other_user.full_name}}</a></small>
+			<small>Lecturer at Dilla university</small>
+			<small><a href="">{{other_user.total_followers}}-followers</a></small>
+			<small><a href="{% url 'accounts:account-follow-unfollow' other_user.pk %}">
+			{% if user in other_user.followers.all %}
+				Following/Unfollow
+			{% else %}
+				Follow
+			{% endif %}
+			</a></small>
 		</div>
 	</div>
 	<div class="profile-right">
@@ -26,4 +32,5 @@
 		</div>
 	</div>
 </section>
+{% include 'accounts_snippets/account_courses.html' %}
 {% endblock mainbody%}

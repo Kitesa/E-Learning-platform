@@ -3,6 +3,7 @@
 {% block mainbody%}
 <section class="all-form-container">
 	<section class="all-form-section">
+			{% include 'homepage_snippets/flash_message.html' %}
 		<fieldset>
 		<form method="POST">
 				<header class="form-header">
@@ -16,26 +17,11 @@
 			</div>
 			
 		</form>
-		<div class="under-form-form">
-			<small><a href="{% url 'accounts:password_reset'%}">Forgot password</a></small>
-			<small><a href="{% url 'accounts:register-page' %}">Have no account</a></small> 
-		</div>
 		<p>
-			By signing in or creating profile you agree to out <a href="{% url 'accounts:terms-of-service-page' %}"><strong>terms of service</strong></a>
+			<small><a href="{% url 'password_reset'%}">Forgot password</a></small>
+			<small><a href="{% url 'accounts:register-page' %}">Have no account</a></small> 
 		</p>
 		</fieldset>
 	</section>
-	<aside class="all-page-sidebar">
-
-		<header>
-			HEY YOU WILL FEEL PROUD TO BE USER OF OUR WEBSITE
-		</header>
-		<div>
-			<p>Learn coding</p>
-			<p>Learn how to think</p>
-			<p>Be parts of future ethiopian technology leader</p>
-			<p>Be curious </p>
-		</div>
-	</aside> 
 </section>
 {%endblock mainbody%}
