@@ -1,0 +1,28 @@
+{% extends 'homepage/base.html' %}
+{% block mainbody %}
+{% load static %}
+
+<!-- OUR COURSES STARTS HERE -->
+<section class="course-detail-container">
+    <div class="course-article-header-container">
+       <div class="course-header">
+           <small><a href="">{{course.course_title}}</a></small>
+           <small>By <a href="{% url 'accounts:account-detail-view' course.course_instructor.pk %}"><strong>{{course.course_instructor.full_name}}</strong></a></small>
+            <small><i>Published</i></small>
+       </div>
+       <div class="enroll">
+            <a href="{% url 'courses:enroll' course.pk %}">
+                {% if user in course.students.all %}
+                    <b>Enrolled</b>
+                {% else %}
+                    Enroll
+                {% endif %}
+            </a>
+       </div>
+    </div>  
+    <div class="course-detail-article">
+        <p>{{course.course_description|safe}}</p>
+    </div>
+</section>
+
+{% endblock mainbody%}
