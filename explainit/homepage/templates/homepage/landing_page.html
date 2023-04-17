@@ -40,7 +40,7 @@
                    <small>By <a href="{% url 'accounts:account-detail-view' course.course_instructor.pk %}"><strong>{{course.course_instructor.full_name}}</strong></a></small>
                </div>
                <div class="enroll">
-               		<a href="">Enroll</a>
+               		<a href="{% url 'courses:course-detail-view' course.pk %}">Enroll</a>
                </div>
             </div>   
             <div class="article-body-container">
