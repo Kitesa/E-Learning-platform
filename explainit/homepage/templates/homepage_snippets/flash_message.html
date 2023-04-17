@@ -1,0 +1,24 @@
+{% load static%}
+{% if messages %}
+    {% for message in messages %}
+      	{% if message.tags == 'info'%}
+	      	<div class="alert-info">
+	      		<div class="alert-image" >
+	        		<img src="{% static 'images/warning.png' %}">
+	        	</div>
+	        	<div class="alert-content">
+	        		<p id="alert-message">{{ message }}</p>
+	        	</div>
+	      	</div>
+      	{% else %}
+	      	<div class="alert-success">
+	        	<div class="alert-image" >
+	        		<img src="{% static 'images/success.png' %}">
+	        	</div>
+	        	<div class="alert-content">
+	        		<p id="alert-message">{{ message }}</p>
+	        	</div>
+	      	</div>
+      	{% endif %}
+    {% endfor %}
+{% endif %}

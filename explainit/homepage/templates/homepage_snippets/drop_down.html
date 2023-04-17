@@ -2,22 +2,18 @@
 <div class="drop-down-options" id="drop-downs">
    <div class="sub-drop-down-options">
          <div class="user-info">
-            <img src="{% static 'images/user.jpg' %}" alt="">
-            <h3><a href="">{{user.full_name}}</a></h3>
+            <img src="{{user_image}}" alt="">
+            <h3><a href="{% url 'accounts:user-profile-home-view' %}">{{user.full_name}}</a></h3>
          </div>
          <hr>
          <div>
             <div class="user-info">
-               <img src="{% static 'images/user.jpg' %}" alt="">
-               <h3><a href="">Account</a></h3>
-            </div>
-            <div class="user-info">
-               <img src="{% static 'images/user.jpg' %}" alt="">
+               <img src="{% static 'images/enrolled.png' %}" alt="">
                <h3><a href="">Enrolled</a></h3>
             </div>
             <div class="user-info">
-               <img src="{% static 'images/user.jpg' %}" alt="">
-               <h3><a href="">Logout</a></h3>
+               <img src="{% static 'images/logout.png' %}" alt="">
+               <h3><a href="{% url 'accounts:logout-page' %}">Logout</a></h3>
             </div>
           </div>
    </div>
