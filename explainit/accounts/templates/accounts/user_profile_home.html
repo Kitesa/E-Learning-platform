@@ -10,8 +10,7 @@
 			<img src="{{user_image}}">
 			</a>
 			<small><a href="{% url 'accounts:user-profile-update-view'%}">{{user.first_name}} {{user.last_name}}</a></small>
-
-			<small>Lecturer at <a href=""><strong>Dilla university</strong></a></small>
+			<small><a href="">{{user.total_followers}}-followers</a></small>
 		</div>
 	</div>
 	<div class="profile-right">
@@ -26,4 +25,5 @@
 		</div>
 	</div>
 </section>
+{% include 'accounts_snippets/user_detail.html' %}
 {% endblock mainbody%}

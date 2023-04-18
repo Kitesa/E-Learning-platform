@@ -3,6 +3,7 @@ from django.contrib.auth import views as auth_views
 from . views import (
             AccountCreationPageView,
             TermsOfServiceListView,
+            Account_activation_view,
 
             #PROFILE
             UserProfileHomeView,
@@ -21,6 +22,7 @@ from . views import (
 app_name = "accounts"
 urlpatterns = [
     path('register/', AccountCreationPageView, name='register-page'),
+    path('activate/<uidb64>/<token>', Account_activation_view, name='activate-account'),
     path('terms-of-serives/', TermsOfServiceListView.as_view(), name='terms-of-service-page'),
     path('login/', auth_views.LoginView.as_view(template_name='accounts/account_login_page.html'), name='login-page'),
     path('logout/', auth_views.LogoutView.as_view(template_name='accounts/account_logout_page.html'), name='logout-page'),

@@ -7,7 +7,7 @@ from .forms import (AccountCreationForm,
 					ProfilePicUploadForm,
 					)
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, get_user_model
 from .models import TermsOfService
 from django.views.generic import (ListView, 
 									CreateView, 
@@ -21,6 +21,49 @@ from django.contrib.auth.mixins import (LoginRequiredMixin,
 										)
 from accounts.models import Account
 
+#ACCOUNT-ACTIVATION
+from .tokens import account_activation_token
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.core.mail import EmailMessage
+
+def Account_activation_view(request, uidb64, token):
+	User = get_user_model()
+	try:
+		uid = force_str(urlsafe_base64_decode(uidb64))
+		user = User.objects.get(pk=uid)
+	except:
+		user = None
+
+	if user is not None and account_activation_token.check_token(user, token):
+		user.is_active = True
+		user.save()
+
+		messages.success(request, "Thank you for your email confirmation. Now you can login your account.")
+		return redirect('accounts:login-page')
+	else:
+		messages.error(request, "Activation link is invalid!")
+
+	return redirect('homepage:homepage')
+
+def activateEmail(request, user, to_email):
+	mail_subject = "Activate your user account."
+	message = render_to_string("accounts/account_activation_page.html", {
+		'user': user.username,
+		'domain': get_current_site(request).domain,
+		'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+		'token': account_activation_token.make_token(user),
+		"protocol": 'https' if request.is_secure() else 'http'
+	})
+	email = EmailMessage(mail_subject, message, to=[to_email])
+	if email.send():
+		messages.success(request, f'Check your email to activate your account.')
+	else:
+		messages.error(request, f'Problem sending email to {to_email}, check if you typed it correctly.')
+
+
 def AccountCreationPageView(request, *args, **kwargs):
 	"""A FUNCTION FOR USER REGISTRATION 
 		AUTHENTICATED USER HAVE NO PERMISSION TO ACCESS REGISTRATION PAGE
@@ -33,17 +76,11 @@ def AccountCreationPageView(request, *args, **kwargs):
 		if request.method == 'POST':
 			form = AccountCreationForm(request.POST)
 			if form.is_valid():
-				form.save()
-				email 			= form.cleaned_data.get('email')
-				raw_password 	= form.cleaned_data.get('password1')
-				login_ 			= form.cleaned_data.get('stay_logged_in')
-				if(login_ == 1):
-					account 		= authenticate(email=email, password=raw_password)
-					login(request, account)
-					messages.success(request, f'Your account has been created and you are logged in!')
-				else:
-					messages.success(request, f'Registration successful! You can login here!')
-					return redirect('accounts:login-page')
+				user = form.save()
+				user.is_active	=False
+				email = form.cleaned_data.get('email')
+				activateEmail(request, user, email)
+
 				return redirect('homepage:homepage')            
 		else:
 			form = AccountCreationForm()

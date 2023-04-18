@@ -1,5 +1,5 @@
 {% load static %}
-{% if other_user.courses.all%}
+{% if user.courses.all%}
 <section class="user-course-section">
 	{% for course in other_user.courses.all %}
 	<article class="user-course-container">

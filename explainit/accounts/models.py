@@ -69,7 +69,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
 	last_login              		= models.DateTimeField(verbose_name='Last Login', auto_now=True)
 	gender                  		= models.CharField(max_length=5, null=False, blank=False, default='M')
 	is_admin                		= models.BooleanField(default=False)
-	is_active               		= models.BooleanField(default=True)
+	is_active               		= models.BooleanField(default=False)
 	is_staff                		= models.BooleanField(default=False)
 	is_our_teacher 					= models.BooleanField(default=False)
 	is_individual_user              = models.BooleanField(default=True)
