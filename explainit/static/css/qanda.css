@@ -10,7 +10,6 @@
 	margin: 0px;
 }
 .question-sth-you-know-container{
-	height: 120px;
 	background-color: red;
 	border-radius: 	5px;
 	border: 1px solid #ccc;
@@ -53,18 +52,6 @@
 	
 }
 
-.question-option-container{
-	display: 	flex;
-	justify-content: 	center;
-	padding: 	10px;
-}
-.question-option-container span{
-	padding: 	10px;
-}
-.question-option-container span a{
-	text-decoration: 	none;
-	color: gray;
-}
 .question-container{
 	width: 100%;
 	border: 1px solid #ccc;

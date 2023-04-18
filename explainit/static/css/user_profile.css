@@ -69,10 +69,10 @@
         margin: 0px;
     }
     .profile-container .profile-right{
-		background-color: red;
+		background-color: #fff;
 	}
 	.profile-container .profile-left{
-		background-color: blue;
+		background-color: #fff;
 		width: 200px;
 	}
 	.profile-container .profile-left .user-pp img{
