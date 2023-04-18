@@ -1,0 +1,14 @@
+<div class="question-sth-you-know-container">
+		<div class="user-pp">
+			{% if user.is_authenticated %}
+			<img src="{{ user.profile_pic.image.url }}">
+			{% endif %}
+		</div>
+		<div class="question-sth-you-know-form-container">
+			<a href="{% url 'qanda:question-creation-view' %}" >
+			<div class="question-sth-you-know-form">	
+					Ask question...
+			</div>
+			</a>
+		</div>
+</div>

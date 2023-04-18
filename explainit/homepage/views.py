@@ -7,11 +7,11 @@ from accounts.models import Account
 def HomePageView(request):
 	context = {}
 	land_context = {}
-	all_questions = Question.objects.all()
+	suggested_questions = Question.objects.all()
 	our_courses = OurCourse.objects.all().order_by('date_created')[:6]
 	land_context['our_courses'] = our_courses
 	our_teachers = Account.objects.filter(is_our_teacher=1)
-	context['questions'] = all_questions
+	context['suggested_questions'] = suggested_questions
 	if request.user.is_authenticated:
 		user_image = request.user.profile_pic.image.url
 		context['user_image'] = user_image
