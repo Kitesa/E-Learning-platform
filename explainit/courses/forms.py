@@ -1,5 +1,5 @@
 from django import forms
-from .models import OurCourse
+from .models import OurCourse, CourseArticle
 
 class OurCourseCreationForm(forms.ModelForm):
 	'''
@@ -17,4 +17,14 @@ class OurCourseUpdateForm(forms.ModelForm):
 	'''
 	class Meta:
 		model 		= OurCourse
+		fields  	= "__all__"
+
+
+class CourseArticleCreationForm(forms.ModelForm):
+	'''
+		A model form to be rendered on template
+		to create a course article 
+	'''
+	class Meta:
+		model 		= CourseArticle
 		fields  	= "__all__"

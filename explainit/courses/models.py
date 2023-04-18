@@ -77,3 +77,5 @@ class OurCourse(models.Model):
 		super().delete()
 
 
+class CourseArticle(models.Model):
+	pass

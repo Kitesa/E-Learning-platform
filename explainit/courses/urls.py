@@ -1,16 +1,30 @@
 from django.urls import path, include
 from .views import (OurCourseHomeView,
-				OurCourseCreateView,
-				CourseDetailView,
+					OurCourseCreateView,
+					CourseDetailView,
+					enroll_courses,
+					CourseUpdateView,
+					CourseDeletionView,
 
-				enroll_courses,
+					#COURSE ARTICLE
+					CourseArticleCreationView,
+					CourseArticleUpdateView,
+					CourseArticleDeletionView,
+
 					)
 
 app_name = "courses"
 urlpatterns = [
-      path("", OurCourseHomeView.as_view(), name="course-home-view"),
-      path("<str:pk>/create/", OurCourseCreateView.as_view(), name="course-create-view"),
-      path("<str:pk>/", CourseDetailView.as_view(), name="course-detail-view"),
+	#COURSES
+  	path("", OurCourseHomeView.as_view(), name="course-home-view"),
+  	path("create/", OurCourseCreateView.as_view(), name="course-create-view"),
+  	path("<str:pk>/update/", CourseUpdateView.as_view(), name="course-update-view"),
+  	path("<str:pk>/", CourseDetailView.as_view(), name="course-detail-view"),
+  	path('<int:pk>/enroll/', enroll_courses, name='enroll'),
 
-      path('<int:pk>/enroll/', enroll_courses, name='enroll'),
+  	#COURSE ARTICLES
+  	path("<str:pk>/create/", CourseArticleCreationView.as_view(), name="article-create-view"),
+  	path("<str:pk>/update/", CourseArticleUpdateView.as_view(), name="article-update-view"),
+  	path("<str:pk>/delete/", CourseArticleDeletionView.as_view(), name="article-delete-view"),
+  	
 ]
