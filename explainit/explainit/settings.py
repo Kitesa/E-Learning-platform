@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
 
     #THIRD PARTY APPS
@@ -56,9 +57,9 @@ INSTALLED_APPS = [
 ]
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'drlk0wyjm',
-    'API_KEY': '698257723934363',
-    'API_SECRET': 'obVZ5ShQ0jBWZQ0q88-xraje-Rk'
+    'CLOUD_NAME': os.environ.get('CLOUD_NAME')
+    'API_KEY':  os.environ.get('API_KEY')
+    'API_SECRET': os.environ.get('API_SECRET')
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 #CRISPY TEMPLATE PACK FOR FORM RENDERING
@@ -101,11 +102,11 @@ WSGI_APPLICATION = 'explainit.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'explainit',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'USER': 'django',
-        'PASSWORD': '12345',
+        'NAME': os.environ.get('DB_NAME'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
 
     }
 }
@@ -168,13 +169,11 @@ LOGIN_URL = 'accounts:login-page'
 LOGOUT_REDIRECT_URL = 'homepage:homepage'
 LOGOUT_URL = 'accounts:login-page'
 
-
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-else:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True
-    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_FROM = os.environ.get('EMAIL_FROM')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+PASSWORD_RESET_TIMEOUT = 150000
