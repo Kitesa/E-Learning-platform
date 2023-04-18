@@ -1,0 +1,26 @@
+<footer class="question-footer">
+	<div>
+		<a href="{% url 'qanda:reask' question.pk %}">
+			{% if user in question.reasks.all %}
+				<b>Reask</b>
+			{% else %}
+				Reask
+			{% endif %}
+			({% if question.total_reasks != 0 %}
+				{{question.total_reasks}}
+			{% endif %})
+		</a>
+	</div>
+	<div>
+		<a href="">Answer</a>
+	</div>
+	<div>
+		<a href="">Share</a>
+	</div>
+	<div>
+		<a href="">Invite</a>
+	</div>
+	<div>
+		<a href="">Forward</a>
+	</div>					
+</footer>

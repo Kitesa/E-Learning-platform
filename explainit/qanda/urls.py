@@ -10,6 +10,9 @@ from .views import (QandaHomeView,
                         AnswerCreationView,
                         AnswerUpdateView,
                         AnswerDeletionView,
+
+                        #REASKS
+                        reask_question,
                         )
 
 app_name = "qanda"
@@ -27,4 +30,6 @@ urlpatterns = [
       path('answer/<int:pk>/update', AnswerUpdateView.as_view(), name='answer-update-view'),
       path('answer/<int:pk>/delete', AnswerDeletionView.as_view(), name='answer-deletion-view'),
 
+      #REASKS
+      path('<int:pk>/enroll/', reask_question, name='reask'),
 ]

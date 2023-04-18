@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Question, Answer
 from django.views.generic import (ListView,
 									CreateView,
@@ -12,6 +12,8 @@ from django.contrib.auth.mixins import (LoginRequiredMixin,
 from .forms import (QuestionCreationForm,
 					AnswerCreationForm,
 					)
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 class QandaHomeView(ListView):
@@ -67,6 +69,20 @@ class QuestionCreationView(LoginRequiredMixin, CreateView):
 		context['title'] = 'Add-question'
 		return context
 
+@login_required
+def reask_question(request, pk):
+    if request.method == 'GET':
+        user = request.user
+        question = get_object_or_404(Question, pk=pk)
+
+        if question.reasks.filter(id=user.id).exists():
+            question.reasks.remove(user)
+            message=messages.success(request,f'You removed your reasks from the question')
+        else:
+            question.reasks.add(user)
+            message =messages.success(request, f'You reasked the question')
+            return redirect(request.META.get('HTTP_REFERER'))
+    return redirect(request.META.get('HTTP_REFERER'))
 
 class QuestionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	'''
