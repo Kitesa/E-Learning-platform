@@ -58,9 +58,7 @@
     color: #F0C803;
     font-weight: bold;
 }
-.for-mobile{
-    display: none;
-}
+
 .user_icon, .humbergor_icon{
     display: flex;
     flex-direction: column;
