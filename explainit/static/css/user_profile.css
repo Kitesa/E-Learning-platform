@@ -1,6 +1,6 @@
 .profile-container{
 	display: flex;
-	width: 75%;
+	width: 60%;
 	margin: auto;
 	border: 1px solid grey;
 
@@ -45,7 +45,7 @@
 	display: flex;
 	margin: auto;
 	margin-top: 30px;
-	width: 75%;
+	width: 60%;
 	overflow: hidden;
 	overflow-x: scroll;
 	border: 1px solid grey;
