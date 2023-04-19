@@ -45,6 +45,7 @@ class OurCourseCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 		 Take the authenticated user as course instructor
 		 '''
 		form.instance.course_instructor = self.request.user
+		messages.success(self.request, 'Course created successfully')
 		return super().form_valid(form)
 
 	def get_context_data(self, *args, **kwargs):
@@ -83,6 +84,7 @@ class CourseUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     
 	def form_valid(self, form):
 		form.instance.course_instructor = self.request.user
+		messages.success(self.request, 'Course updated successfully')
 		return super().form_valid(form)
 
 	def test_func(self):
@@ -103,13 +105,16 @@ class CourseDeletionView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	model = OurCourse
 	success_url = '/'
 	template_name = 'courses/course_deletion_confirm_view.html'
+	
+	def form_valid(self, form):
+		messages.success(self.request, 'Course deleted successfully')
+		return super().form_valid(form)
 
 	def test_func(self):
 		course = self.get_object()
 		if self.request.user == course.course_instructor:
 			return True
 		return False
-
 
 class CourseArticleCreationView(LoginRequiredMixin, CreateView):
 	'''

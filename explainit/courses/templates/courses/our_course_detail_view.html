@@ -6,9 +6,14 @@
 <section class="course-detail-container">
     <div class="course-article-header-container">
        <div class="course-header">
-           <small><a href="">{{course.course_title}}</a></small>
+           <small><a href="">{{course.course_title}}
+            {% if course.total_students != 0%}
+              ({{course.total_students}}-Students){% endif %}</a></small>
            <small>By <a href="{% url 'accounts:account-detail-view' course.course_instructor.pk %}"><strong>{{course.course_instructor.full_name}}</strong></a></small>
-            <small><i>Published</i></small>
+            <small><i>Published on {{course.date_created}}</i></small>
+            {% if user == course.course_instructor %}
+            <small><a href="{% url 'courses:course-update-view' course.pk %}">Update</a> <a href="{% url 'courses:course-deletion-view' course.pk %}">Delete</a></small>
+            {% endif %}
        </div>
        <div class="enroll">
             <a href="{% url 'courses:enroll' course.pk %}">

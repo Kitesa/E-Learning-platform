@@ -19,6 +19,7 @@ urlpatterns = [
   	path("", OurCourseHomeView.as_view(), name="course-home-view"),
   	path("create/", OurCourseCreateView.as_view(), name="course-create-view"),
   	path("<str:pk>/update/", CourseUpdateView.as_view(), name="course-update-view"),
+  	path("<str:pk>/delete/", CourseDeletionView.as_view(), name="course-deletion-view"),
   	path("<str:pk>/", CourseDetailView.as_view(), name="course-detail-view"),
   	path('<int:pk>/enroll/', enroll_courses, name='enroll'),
 

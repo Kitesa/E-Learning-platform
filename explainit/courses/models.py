@@ -47,7 +47,7 @@ class OurCourse(models.Model):
 			redirect the user after successfull 
 			creation of course
 		'''
-		return reverse('courses:course-home-view')
+		return reverse('courses:course-detail-view', args=[self.pk])
 
 
 	def save(self, **kwargs):
