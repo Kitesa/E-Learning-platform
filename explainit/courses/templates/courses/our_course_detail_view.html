@@ -12,7 +12,7 @@
            <small>By <a href="{% url 'accounts:account-detail-view' course.course_instructor.pk %}"><strong>{{course.course_instructor.full_name}}</strong></a></small>
             <small><i>Published on {{course.date_created}}</i></small>
             {% if user == course.course_instructor %}
-            <small><a href="{% url 'courses:course-update-view' course.pk %}">Update</a> <a href="{% url 'courses:course-deletion-view' course.pk %}">Delete</a></small>
+            <small><a href="{% url 'courses:course-update-view' course.pk %}">Update</a> <a href="{% url 'courses:course-deletion-view' course.pk %}">Delete</a>  <a href="{% url 'courses:article-creation-view' course.pk %}">Add article</a></small>
             {% endif %}
        </div>
        <div class="enroll">
@@ -28,6 +28,21 @@
     <div class="course-detail-article">
         <p>{{course.course_description|safe}}</p>
     </div>
+    <hr>
+    
+    {% for article in course.articles.all %}
+      <div class="course-detail-article">
+          {{article.article_content|safe}}
+          {% if user == article.course.course_intsructor %}
+          <small><a href="{% url 'courses:article-update-view' article.pk %}">edit</a>
+          </small>
+          <small>
+           <a href="{% url 'courses:article-delete-view' article.pk %}">delete</a> 
+          </small>
+          {% endif %}
+      </div>
+    {% endfor %}
+    
 </section>
 
 {% endblock mainbody%}

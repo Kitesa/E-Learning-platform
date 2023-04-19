@@ -78,4 +78,18 @@ class OurCourse(models.Model):
 
 
 class CourseArticle(models.Model):
-	pass
+	course 				= models.ForeignKey(OurCourse, related_name='articles', on_delete=models.CASCADE, blank=True, null=True)
+	article_content		= RichTextField(blank=True, null=True)
+	date_created 		= models.DateTimeField(auto_now_add=True, blank=True, null=True)
+	article_identity_number = models.IntegerField(null=True)
+
+	class Meta:
+		ordering = ['article_identity_number', ]
+
+	def __str__(self):
+		return "Articles under" + str(self.course.course_title) + " course by " + str(self.course.course_instructor.full_name)
+
+	def get_absolute_url(self):
+		return reverse('courses:course-detail-view', args=[self.course.pk])
+
+	

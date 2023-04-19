@@ -17,7 +17,7 @@ class OurCourseUpdateForm(forms.ModelForm):
 	'''
 	class Meta:
 		model 		= OurCourse
-		fields  	= "__all__"
+		fields  	= ['course_title', 'course_description', 'course_poster']
 
 
 class CourseArticleCreationForm(forms.ModelForm):
@@ -27,4 +27,4 @@ class CourseArticleCreationForm(forms.ModelForm):
 	'''
 	class Meta:
 		model 		= CourseArticle
-		fields  	= "__all__"
+		fields  	= ['article_content', 'article_identity_number']
