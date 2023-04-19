@@ -15,6 +15,7 @@ def HomePageView(request):
 	if request.user.is_authenticated:
 		user_image = request.user.profile_pic.image.url
 		context['user_image'] = user_image
+		context['our_courses'] = our_courses 
 		return render(request, 'homepage/homepage.html', context)
 	else:
 		return render(request, 'homepage/landing_page.html', land_context)
