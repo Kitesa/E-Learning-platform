@@ -72,8 +72,6 @@ class Account(AbstractBaseUser, PermissionsMixin):
 	is_active               		= models.BooleanField(default=False)
 	is_staff                		= models.BooleanField(default=False)
 	is_our_teacher 					= models.BooleanField(default=False)
-	is_individual_user              = models.BooleanField(default=True)
-	stay_logged_in					= models.BooleanField(default=False)
 	followers 						= models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='account_followers', blank=True)
 	
 	@property

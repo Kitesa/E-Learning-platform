@@ -23,7 +23,7 @@ class AccountCreationForm(UserCreationForm):
     
     class Meta:
         model = Account
-        fields = ('first_name', 'last_name', 'username', 'Phone_Number', 'email', 'gender', 'birth_date', 'password1', 'password2', 'stay_logged_in')
+        fields = ('first_name', 'last_name', 'username', 'Phone_Number', 'email', 'gender', 'birth_date', 'password1', 'password2')
 
 
     def clean_Phone_Number(self):
