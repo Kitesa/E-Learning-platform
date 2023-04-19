@@ -25,6 +25,8 @@
                     <p>{{ question.question_content|safe }}</p>
                 </div>
             {% include 'qanda_snippets/options_under_question.html' %}
+
+            <h1>Answers<a href="#ANSWER">(ADD-NEW)</a></h1>
             {% for answer in question.answers.all%}
             <hr>
                  <header class="question-header">
@@ -40,17 +42,16 @@
                     </header>
 
                     <p>{{ answer.content|safe }}</p>
+                    {% if user == answer.who_answered %}
+                         {% include 'qanda_snippets/options_under_answer.html' %}
+                    {% endif %}
             {% endfor %}
             </article>
            
 
-            <section class="form-container-section">
+            <section class="form-container-section" id="ANSWER">
                 <fieldset>
                 <form method="POST" enctype="multipart/form-data">
-                        <header class="form-header">
-                            <h2>Answer info</h2>
-                        </header>
-                        <hr>
                         {% csrf_token %}
                         {{ form.media }}
                         {{form|safe}}

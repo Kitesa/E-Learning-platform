@@ -26,9 +26,9 @@ urlpatterns = [
       path('<int:pk>/delete', QuestionDeletionView.as_view(), name='question-deletion-view'),
 
       #ANSWERS
-      path('<int:pk>/add_answer', AnswerCreationView.as_view(), name='answer-creation-view'),
-      path('<int:pk>/update', AnswerUpdateView.as_view(), name='answer-update-view'),
-      path('<int:pk>/delete', AnswerDeletionView.as_view(), name='answer-deletion-view'),
+      path('answer/<int:pk>/add_answer', AnswerCreationView.as_view(), name='answer-creation-view'),
+      path('answer/<int:pk>/update', AnswerUpdateView.as_view(), name='answer-update-view'),
+      path('answer/<int:pk>/delete', AnswerDeletionView.as_view(), name='answer-deletion-view'),
 
       #REASKS
       path('<int:pk>/enroll/', reask_question, name='reask'),
