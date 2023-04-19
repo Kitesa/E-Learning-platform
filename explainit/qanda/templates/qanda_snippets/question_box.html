@@ -10,18 +10,17 @@
 					</div>
 					<div class="about-question-author">
 						<a href="{% url 'accounts:account-detail-view' question.author.pk %}">{{question.author.full_name}}</a>
-						<small>{{question.date_updated|naturaltime}}</small>
+						<small>
+							{% if question.date_difference < '1' %}
+							{{question.date_updated|naturaltime}}
+							{% else %}
+							{{question.date_updated}}
+							{% endif %}
+						</small>
 					</div>
 				</header>
 				<div class="question-body">
-					{% if question.question_content|length > 200 %}
-                    <div class="half-content" id="half-{{question.id}}" style="margin-top:15px;">{{question.question_content|safe|truncatechars:200 }}<a data-id="{{question.id}}" href="javascript:void();" class="show-hide-btn" style="color:blue;">read more</a>
-                    </div>
-                    <div class="full-content" id="full-{{question.id}}" style="display: none; margin-top:15px;">								{{question.question_content|safe }}
-                    </div>
-                	{%else%}
-                   		 <p>{{ question.content|safe }}</p>
-                	{%endif%}
+                   		 <p>{{ question.question_content|safe }}</p>
 				</div>
 			{% include 'qanda_snippets/options_under_question.html' %}
 			</article>

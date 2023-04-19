@@ -20,15 +20,15 @@ urlpatterns = [
       path("", QandaHomeView.as_view(), name="qanda-home-view"),
 
       #QUESTIONS
-      path('question/<int:pk>', QuestionDetailView.as_view(), name='question-detail-view'),
-      path('question/new', QuestionCreationView.as_view(), name='question-creation-view'),
-      path('question/<int:pk>/update', QuestionUpdateView.as_view(), name='question-update-view'),
-      path('question/<int:pk>/delete', QuestionDeletionView.as_view(), name='question-deletion-view'),
+      path('<int:pk>', QuestionDetailView.as_view(), name='question-detail-view'),
+      path('new/', QuestionCreationView.as_view(), name='question-creation-view'),
+      path('<int:pk>/update', QuestionUpdateView.as_view(), name='question-update-view'),
+      path('<int:pk>/delete', QuestionDeletionView.as_view(), name='question-deletion-view'),
 
       #ANSWERS
-      path('question/<int:pk>/add_answer', AnswerCreationView.as_view(), name='answer-creation-view'),
-      path('answer/<int:pk>/update', AnswerUpdateView.as_view(), name='answer-update-view'),
-      path('answer/<int:pk>/delete', AnswerDeletionView.as_view(), name='answer-deletion-view'),
+      path('<int:pk>/add_answer', AnswerCreationView.as_view(), name='answer-creation-view'),
+      path('<int:pk>/update', AnswerUpdateView.as_view(), name='answer-update-view'),
+      path('<int:pk>/delete', AnswerDeletionView.as_view(), name='answer-deletion-view'),
 
       #REASKS
       path('<int:pk>/enroll/', reask_question, name='reask'),

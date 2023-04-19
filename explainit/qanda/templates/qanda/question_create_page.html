@@ -7,14 +7,14 @@
             <fieldset>
             <form method="POST" enctype="multipart/form-data">
                     <header class="form-header">
-                        <h2>Post info</h2>
+                        <h2>Question info</h2>
                     </header>
                     <hr>
                     {% csrf_token %}
                     {{ form.media }}
                     {{form|safe}}
                 <div class="form-button">
-                    <button type="submit">Post</button>
+                    <button type="submit">Post question</button>
                 </div>
                 
             </form>

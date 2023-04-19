@@ -6,21 +6,24 @@
 			{% else %}
 				Reask
 			{% endif %}
-			({% if question.total_reasks != 0 %}
-				{{question.total_reasks}}
-			{% endif %})
+			{% if question.total_reasks != '0' %}
+				({{question.total_reasks}})
+			{% endif %}
 		</a>
 	</div>
 	<div>
-		<a href="">Answer</a>
-	</div>
+		<a href="{% url 'qanda:answer-creation-view' question.pk %}">Answer
+			{% if question.answers.all.count > 0%}
+				({{question.answers.all.count}})
+			{% endif %}
+		</a>
+	</div>	
+	{% if user == question.author %}
 	<div>
-		<a href="">Share</a>
-	</div>
+		<a href="{% url 'qanda:question-update-view' question.pk %}">Update</a>
+	</div>	
 	<div>
-		<a href="">Invite</a>
+		<a href="{% url 'qanda:question-deletion-view' question.pk %}">Delete</a>
 	</div>
-	<div>
-		<a href="">Forward</a>
-	</div>					
+	{% endif %}		
 </footer>

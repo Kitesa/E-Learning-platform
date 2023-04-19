@@ -43,12 +43,9 @@ class QuestionDetailView(DetailView):
 	template_name = 'qanda/question_detail_view.html'
 
 	def get_context_data(self, *args, **kwargs):
-		splited_course_name = self.get_object().title.split()
-		related_questions = Question.objects.filter(Q(title__icontains=self.object.title) | Q(title=self.object.title) | Q(title__in=splited_course_name))
+		splited_course_name = self.get_object()
 		context = super(QuestionDetailView, self).get_context_data(*args, **kwargs)
-		context['title'] = self.get_object().title
-		context['related_questions'] = related_questions
-		context['splited_course_name'] = splited_course_name
+		context['title'] = self.get_object().question_title
 		return context
 
 class QuestionCreationView(LoginRequiredMixin, CreateView):
@@ -62,6 +59,7 @@ class QuestionCreationView(LoginRequiredMixin, CreateView):
 
 	def form_valid(self, form):
 		form.instance.author = self.request.user
+		messages.success(self.request, "Question created successfully")
 		return super().form_valid(form)
 
 	def get_context_data(self, *args, **kwargs):
@@ -94,6 +92,7 @@ class QuestionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     
 	def form_valid(self, form):
 		form.instance.author = self.request.user
+		messages.success(self.request, "Question updated successfully")
 		return super().form_valid(form)
 
 	def test_func(self):
@@ -115,6 +114,10 @@ class QuestionDeletionView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	model = Question
 	success_url = '/'
 	template_name = 'qanda/question_delete_page.html'
+	
+	def form_valid(self, form):
+		messages.success(self.request, "Question deleted successfully")
+		return super().form_valid(form)	
 
 	def test_func(self):
 		Question = self.get_object()
@@ -135,17 +138,15 @@ class AnswerCreationView(LoginRequiredMixin, CreateView):
 	def form_valid(self, form):
 		form.instance.question_id = self.kwargs['pk']
 		form.instance.who_answered = self.request.user
+		messages.success(self.request, "Answer added successfully")
 		return super().form_valid(form)
 
 	def get_context_data(self, *args, **kwargs):
 		question = Question.objects.get(pk=self.kwargs['pk'])
-		splited_course_name = question.title.split()
-		related_questions = Question.objects.filter(Q(title__icontains=question.title) | Q(title=question.title) | Q(title__in=splited_course_name))
 		answers = Answer.objects.filter(question_id=self.kwargs['pk'])
 		context = super(AnswerCreationView, self).get_context_data(*args, **kwargs)
-		context['title'] = 'Answers - ' + f'{question.title}'
+		context['title'] = 'Answers to - ' + f'{question.question_title}'
 		context['answers'] = answers
-		context['related_questions'] = related_questions
 		context['question'] = question
 		return context
 
@@ -160,6 +161,7 @@ class AnswerUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	template_name = 'answers/answer_update_page.html'
 
 	def form_valid(self, form):
+		messages.success(self.request, "Answer updated successfully")
 		return super().form_valid(form)
 
 	def test_func(self):
@@ -181,6 +183,11 @@ class AnswerDeletionView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	model = Answer
 	success_url = '/'
 	template_name = 'answers/answer_delete_page.html'
+
+	def form_valid(self, form):
+		messages.success(self.request, "Answer deleted successfully")
+		return super().form_valid(form)
+
 
 	def test_func(self):
 		Answer = self.get_object()
