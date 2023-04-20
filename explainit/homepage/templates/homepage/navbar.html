@@ -16,9 +16,6 @@
                </div>
                {% if not user.is_authenticated %}
                 <div>
-                  <li><a href="#about">ABOUT</a></li>
-                </div>
-                <div>
                   <li><a href="{% url 'accounts:login-page'%}">LOGIN | SIGNUP</a></li>
                </div>
                {% endif %}
