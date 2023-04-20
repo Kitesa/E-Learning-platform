@@ -94,7 +94,20 @@
 .course-detail-article p{
     text-align: justify;
 }
-
+.add-course{
+    text-decoration: none;
+    display: flex;
+    justify-content: flex-end;
+}
+.add-course-left {
+    width: 90%
+}
+.add-course-right{
+    width: 100px;
+}
+.add-course img{
+    height: 30px;
+}
 @media screen and (max-width: 1200px){
     .course-home-section{
         padding: 0px;
