@@ -40,7 +40,7 @@ class Question(models.Model):
 		return self.question_title
 
 	def get_absolute_url(self):
-		return reverse('qanda:answer-create-view', args=[self.pk])
+		return reverse('qanda:answer-creation-view', args=[self.pk])
 
 
 class Answer(models.Model):
