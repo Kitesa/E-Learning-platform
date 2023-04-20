@@ -125,7 +125,7 @@ class CourseDeletionView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		where to redirect the user after successful deletion of the course
 		'''
 		course = self.get_object()
-		return reverse( 'courses:course-home-view', args=[ourse.pk])
+		return reverse( 'courses:course-home-view')
 
 	def form_valid(self, form):
 		'''
@@ -148,8 +148,9 @@ class CourseDeletionView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		what should be sent to course deletion page
 		'''
 		course = OurCourse.objects.get(pk=self.kwargs['pk'])
-		context = super(CourseArticleCreationView, self).get_context_data(*args, **kwargs)
+		context = super(CourseDeletionView, self).get_context_data(*args, **kwargs)
 		context['title'] = f'{course.course_title} - delete'
+		context['course'] = course
 		return context
 
 

@@ -3,6 +3,13 @@
 {% load static %}
 <!-- User course starts here -->
 {% if user.is_our_teacher %}
+<div class="add-course">
+  <div class="add-course-left">
+  </div>
+  <div class="add-course-right">
+    <a href="{% url 'courses:course-create-view' %}"><img src="{% static 'images/upload.png' %}"></a>
+  </div>
+</div>
 <section class="course-home-section">
 	{% for course in user.course.all %}
 		<article class="course-article-container">
