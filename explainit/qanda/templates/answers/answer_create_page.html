@@ -25,6 +25,7 @@
                     <p>{{ question.question_content|safe }}</p>
                 </div>
             {% include 'qanda_snippets/options_under_question.html' %}
+
             {% if question.answers.count > '0'%}
             <h1>Answers</a></h1>
             {% endif %}
