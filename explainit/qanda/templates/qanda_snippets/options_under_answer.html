@@ -1,0 +1,10 @@
+<footer class="question-footer">
+	{% if user == answer.who_answered %}
+	<div>
+		<a href="{% url 'qanda:answer-update-view' answer.pk %}">Update</a>
+	</div>	
+	<div>
+		<a href="{% url 'qanda:answer-deletion-view' answer.pk %}">Delete</a>
+	</div>
+	{% endif %}		
+</footer>
