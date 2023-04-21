@@ -1,5 +1,6 @@
 from .models import (Account,
                         ProfilePic,
+                        UserBio,
                         )
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -82,3 +83,11 @@ class ProfilePicUploadForm(forms.ModelForm):
     class Meta:
         model   = ProfilePic
         fields  = ["image", ]
+
+class BioUpdateForm(forms.ModelForm):
+    '''
+    Model form for username update
+    '''
+    class Meta:
+        model   = UserBio
+        fields  = ['bio',]

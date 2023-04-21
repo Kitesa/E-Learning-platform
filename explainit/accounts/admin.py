@@ -3,6 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from accounts.models import (Account, 
 							TermsOfService,
 							ProfilePic,
+							UserBio,
 							)
 #MODEL REGISTRATIONS TO ADMIN
 class AccountAdmin(UserAdmin):
@@ -17,3 +18,4 @@ class AccountAdmin(UserAdmin):
 admin.site.register(Account, AccountAdmin)
 admin.site.register(TermsOfService)
 admin.site.register(ProfilePic)
+admin.site.register(UserBio)

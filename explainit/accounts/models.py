@@ -182,4 +182,9 @@ class OurTeacherProfile(object):
 	"""
 	
 
-		
+class UserBio(models.Model):
+	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='bios')
+	bio  = RichTextField()
+
+	def __str__(self):
+		return f'{self.user.full_name}-bio'
