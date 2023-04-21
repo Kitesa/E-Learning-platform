@@ -1,0 +1,29 @@
+<footer class="question-footer">
+	<div>
+		<a href="{% url 'qanda:reask' question.pk %}">
+			{% if user in question.reasks.all %}
+				<b>Reask</b>
+			{% else %}
+				Reask
+			{% endif %}
+			{% if question.total_reasks != '0' %}
+				({{question.total_reasks}})
+			{% endif %}
+		</a>
+	</div>
+	<div>
+		<a href="{% url 'qanda:answer-creation-view' question.pk %}">Answer
+			{% if question.answers.all.count > 0%}
+				({{question.answers.all.count}})
+			{% endif %}
+		</a>
+	</div>	
+	{% if user == question.author %}
+	<div>
+		<a href="{% url 'qanda:question-update-view' question.pk %}">Update</a>
+	</div>	
+	<div>
+		<a href="{% url 'qanda:question-deletion-view' question.pk %}">Delete</a>
+	</div>
+	{% endif %}		
+</footer>
