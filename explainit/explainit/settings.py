@@ -57,9 +57,9 @@ INSTALLED_APPS = [
 ]
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUD_NAME')
-    'API_KEY':  os.environ.get('API_KEY')
-    'API_SECRET': os.environ.get('API_SECRET')
+    'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
+    'API_KEY': os.environ.get('API_KEY'),
+    'API_SECRET': os.environ.get('API_SECRET'),
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 #CRISPY TEMPLATE PACK FOR FORM RENDERING
@@ -102,11 +102,11 @@ WSGI_APPLICATION = 'explainit.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DB_NAME'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'NAME': 'explainit',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'USER': 'django',
+        'PASSWORD': '12345',
 
     }
 }
@@ -176,4 +176,4 @@ EMAIL_USE_TLS = True
 EMAIL_FROM = os.environ.get('EMAIL_FROM')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-PASSWORD_RESET_TIMEOUT = 150000
+
