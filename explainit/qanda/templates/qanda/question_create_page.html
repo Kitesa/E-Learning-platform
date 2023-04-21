@@ -1,0 +1,26 @@
+{% extends 'homepage/base.html' %}
+{% load crispy_forms_tags %}
+{% block mainbody%}
+<section class="form-container-section">
+    <section class="all-form-container">
+        <section class="all-form-section">
+            <fieldset>
+            <form method="POST" enctype="multipart/form-data">
+                    <header class="form-header">
+                        <h2>Question info</h2>
+                    </header>
+                    <hr>
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{form|safe}}
+                <div class="form-button">
+                    <button type="submit">Post question</button>
+                </div>
+                
+            </form>
+            </fieldset>
+        </section>
+    </section>
+</section>
+
+{%endblock mainbody%}
