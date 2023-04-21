@@ -25,23 +25,24 @@
                     <p>{{ question.question_content|safe }}</p>
                 </div>
             {% include 'qanda_snippets/options_under_question.html' %}
-
-            <h1>Answers<a href="#ANSWER">(ADD-NEW)</a></h1>
+            {% if question.answers.count > '0'%}
+            <h1>Answers</a></h1>
+            {% endif %}
             {% for answer in question.answers.all%}
             <hr>
-                 <header class="question-header">
-                        <div class="user-pp">
-                                <img src="{{answer.who_answered.profile_pic.image.url}}">
-                        </div>
-                        <div class="about-question-author">
-                            <a href="{% url 'accounts:account-detail-view' answer.who_answered.pk %}">{{answer.who_answered.full_name}}</a>
-                            <small>
-                                {{answer.date_answered}}
-                            </small>
-                        </div>
-                    </header>
+                <header class="question-header">
+                    <div class="user-pp">
+                            <img src="{{answer.who_answered.profile_pic.image.url}}">
+                    </div>
+                    <div class="about-question-author">
+                        <a href="{% url 'accounts:account-detail-view' answer.who_answered.pk %}">{{answer.who_answered.full_name}}</a>
+                        <small>
+                            {{answer.date_answered}}
+                        </small>
+                    </div>
+                </header>
 
-                    <p>{{ answer.content|safe }}</p>
+                <p>{{ answer.content|safe }}</p>
                     {% if user == answer.who_answered %}
                          {% include 'qanda_snippets/options_under_answer.html' %}
                     {% endif %}
@@ -56,7 +57,6 @@
                     <div class="form-button">
                         <button type="submit">Add answer</button>
                     </div>
-                    
                 </form>
                 </fieldset>
             </section>
