@@ -1,0 +1,63 @@
+{% extends 'homepage/base.html' %}
+{% block mainbody %}
+{% load static %}
+<!-- User course starts here -->
+{% if user.is_our_teacher %}
+<div class="add-course">
+  <div class="add-course-left">
+  </div>
+  <div class="add-course-right">
+    <a href="{% url 'courses:course-create-view' %}"><img src="{% static 'images/upload.png' %}"></a>
+  </div>
+</div>
+<section class="course-home-section">
+	{% for course in user.course.all %}
+		<article class="course-article-container">
+            <div class="course-article-header-container">
+               <div class="course-header">
+                   <small><a href="{% url 'courses:course-detail-view' course.pk %}">{{course.course_title}}</a></small>
+                   <small>By <a href="{% url 'accounts:account-detail-view' user.pk %}"><strong>{{course.course_instructor.full_name}}</strong></a></small>
+               </div>
+               <div class="enroll">
+               		<p><a href="">Enroll</a></p>
+               </div>
+            </div>   
+            <div class="article-body-container">
+            	<a href="{% url 'courses:course-detail-view' course.pk %}">
+	                <div class="course-poster">
+	                    <p><img src="{{course.course_poster.url}}"></p>
+	                </div>
+            	</a>
+            </div>  
+        </article>
+    {% endfor %}
+</section>
+{% endif %}
+<!-- User course ends here -->
+
+<!-- OUR COURSES STARTS HERE -->
+<section class="course-home-section">
+	{% for course in our_courses %}
+        <article class="course-article-container">
+            <div class="course-article-header-container">
+               <div class="course-header">
+                   <small><a href="{% url 'courses:course-detail-view' course.pk %}">{{course.course_title}}</a></small>
+                   <small>By <a href="{% url 'accounts:account-detail-view' course.course_instructor.pk %}"><strong>{{course.course_instructor.full_name}}</strong></a></small>
+               </div>
+               <div class="enroll">
+               		<p><a href="{% url 'courses:course-detail-view' course.pk %}">Enroll</a></p>
+               </div>
+            </div>   
+            <div class="article-body-container">
+            	<a href="{% url 'courses:course-detail-view' course.pk %}">
+	                <div class="course-poster">
+	                    <p><img src="{{course.course_poster.url}}"></p>
+	                </div>
+            	</a>
+            </div>  
+        </article>
+    {% endfor %}
+</section>
+<!-- OUR COURSES ENDS HERE -->
+
+{% endblock mainbody%}

@@ -1,0 +1,26 @@
+{% extends 'homepage/base.html' %}
+{% load crispy_forms_tags %}
+{% block mainbody%}
+<section class="all-form-container">
+  <section class="all-form-section">
+    <fieldset>
+    <form method="POST" enctype="multipart/form-data">
+        <header class="login-header">
+          <h2>Upload profile picture</h2>
+        </header>
+        <hr>
+      {% csrf_token %}
+      {{form}}
+      <div class="form-button">
+        <button type="submit">Upload</button>
+      </div>
+      
+    </form>
+    </fieldset>
+  </section>
+  <aside class="all-page-sidebar">
+
+    
+  </aside> 
+</section>
+{%endblock mainbody%}

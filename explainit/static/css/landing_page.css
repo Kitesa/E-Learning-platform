@@ -1,0 +1,122 @@
+.landing-page-sections-top{
+	width: 100%;
+	margin: 0px
+	padding:0px;
+	display: flex;
+	background-color: #F0F0EF;
+}
+.landing-page-sections-top:hover{
+	background-color: #fff;
+	border: 1px solid #E8E8E8;
+	opacity: 80%;
+	border: 1px solid rgba(255, 0, 0, .5);
+}
+.landing-page-sections{
+	display: flex;
+	justify-content: center;
+	height: 280px;
+	width: 70%;
+	margin: auto;
+	margin-top: 50px;
+}
+.left-side-top{
+	width: 60%;
+}
+
+
+.left-side-top p{
+	text-align: center;
+	padding:30px;
+}	
+.left-side-top p a{
+	background-color: green;
+	height: 40px;
+	text-decoration: none;
+	font-size: 20px;
+	text-align: center;
+	color: #fff;
+	border-radius: 3px;
+	padding:10px;
+}
+.right-side-top{
+	width: 40%;
+}
+.right-side-top img{
+    width: 100%;
+}
+
+.right-side-top img:hover{
+	width: 101%;
+}
+
+.landing-page-sponsors{
+	height: 100px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-width: 3px;
+	margin-top: 50px;
+	margin-bottom: 50px
+}
+
+.landing-page-our-teachers{
+	display: flex;
+	width: 100%;
+}
+
+
+.landing-page-our-teachers div{
+	margin: 20px;
+}
+
+.landing-page-our-teachers div img{
+	height: 200px;
+	width: 200px;
+	border-radius: 50%;
+	margin: auto;
+	background-repeat: no-repeat;
+	background-image: 
+}
+
+.landing-page-our-teachers div small{
+	display: block;
+	text-align: center;
+}
+.teacher-container{
+	display: flex;
+	margin: auto;
+	width: 90%;
+}
+
+.free-blank{
+	width: 100%;
+	background-color: #F0F0EF;
+	margin: auto;
+	height: 150px;
+	text-align: center;
+	color: #2C72B8;
+	padding: auto;
+	margin-bottom: 30px;
+
+}
+.free-blank h1{
+	font-size: 40px;
+	font-weight: bold;
+	padding-top:20px;
+	margin-bottom: 10px;
+}
+.free-blank p{
+	padding: 0px;
+	margin: 0px;
+}
+
+@media all and (max-width: 800px){
+	.landing-page-sections-top{
+		display: block;
+	}
+	.left-side-top{
+		width: 100%;
+	}
+	.right-side-top{
+		width: 100%;
+	}
+}

@@ -1,0 +1,20 @@
+{% extends 'homepage/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block mainbody%}
+<section class="all-form-container">
+	<section class="all-form-section">
+			<fieldset>
+				<h3>Account update</h3>
+				<hr>
+				<form method="POST">
+					{% csrf_token %}
+					{{user_account_form|crispy}}
+					<div class="form-button">
+						<button type="submit">Update</button>
+					</div>
+				</form>
+			</fieldset>
+	</section>
+</section>
+{%endblock mainbody%}

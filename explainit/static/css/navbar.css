@@ -1,5 +1,5 @@
 .header {
-    background-color: #dfdfdf;
+    background-color: #1B5C8C;
     height: 80px;
     width: 100%;
     border-bottom: 1px solid #CCCCCC;
@@ -47,22 +47,18 @@
 .nav_bar_links ul div{
     padding: 1.5%;
 }
-.nav_bar_links ul div:hover {
-    font-weight: bold;
-    background-color: #fafafa;
-    border-radius: 5%;
-}
 
 .nav_bar_links ul div li a{
     text-decoration: none;
     font-size: 18px;
-    color: grey;
+    color: #fff;
+    font-weight: bold;
+}
+.nav_bar_links ul div li a:hover{
+    color: #F0C803;
     font-weight: bold;
 }
 
-.for-mobile{
-    display: none;
-}
 .user_icon, .humbergor_icon{
     display: flex;
     flex-direction: column;

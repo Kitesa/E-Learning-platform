@@ -16,7 +16,7 @@
 body {
     color: #484848;
     font-size: 14px;
-    font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: 'Roboto slab', Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
     position: relative;
     display: block;
     margin: 0;
@@ -24,13 +24,45 @@ body {
 }
 
 .container {
-    width: 95%;
+    width: 90%;
     margin: auto;
     margin-top: 90px;
 }
 .container .warning{
     color: red;
     font-size: 20px;
+}
+.alert-success, .alert-info{
+    width: 80%;
+    height: 60px;
+    opacity: 30%;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+}
+
+#alert-message{
+        color: #fff;
+}
+.alert-info{
+    background-color: red;
+}
+.alert-success{
+    background-color: green;
+}
+.alert-image{
+    height: 80%;
+    width: 40px;
+
+}
+
+.alert-image img{
+    height: 30px;
+    width: 30px;
+    margin-top: 15px;
 }
 @media all and (max-width: 900px){
     .container{

@@ -1,0 +1,21 @@
+{% load static %}
+{% if our_courses %}
+<section class="user-course-section">
+	{% for course in our_courses %}
+	<article class="user-course-container">
+		<header class="user-course-header">
+               <div class="course-header">
+                   <small><a href="{% url 'courses:course-detail-view' course.pk %}">{{course.course_title}}</a></small>
+                   <small>By <a href="{% url 'accounts:account-detail-view' course.course_instructor.pk %}"><strong>{{course.course_instructor.full_name}}</strong></a></small>
+               </div>
+		</header>
+
+		<div class="user-course-body">
+			<a href="{% url 'courses:course-detail-view' course.pk %}">
+				<img src="{{course.course_poster.url}}">
+			</a>
+		</div>
+	</article>
+	{% endfor %}
+</section>
+{% endif %}

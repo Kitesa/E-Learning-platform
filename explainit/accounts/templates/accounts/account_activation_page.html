@@ -1,0 +1,7 @@
+{% autoescape off %}
+Hello {{ user.full_name }} welcome to Explain-IT,
+
+Please click on the link below to confirm your registration and acivate your account
+
+{{ protocol }}://{{ domain }}{% url 'accounts:activate-account' uidb64=uid token=token %}
+{% endautoescape %}

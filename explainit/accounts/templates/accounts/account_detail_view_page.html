@@ -1,0 +1,47 @@
+{% extends 'homepage/base.html'%}
+{% load static %}
+{% block mainbody%}
+
+<section class="profile-container">
+	<div class="profile-left">
+		<div class="user-pp">
+			<a href="">
+				<img src="{{other_user.profile_pic.image.url}}">
+			</a>
+			<small><a href="">{{other_user.full_name}}</a></small>
+			<small>{{other_user.total_followers}}-followers</small>
+			<small><a href="{% url 'accounts:account-follow-unfollow' other_user.pk %}">
+			{% if user in other_user.followers.all %}
+				Following/Unfollow
+			{% else %}
+				Follow
+			{% endif %}
+			</a></small>
+		</div>
+	</div>
+	<div class="profile-right">
+		<div class="profile-right-body">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+		</div>
+	</div>
+</section>
+{% include 'accounts_snippets/account_courses.html' %}
+{% endblock mainbody%}

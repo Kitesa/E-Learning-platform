@@ -1,0 +1,85 @@
+.profile-container{
+	display: flex;
+	width: 60%;
+	margin: auto;
+	border: 1px solid grey;
+
+}
+
+.profile-container .profile-left{
+	width: 300px;
+}
+
+.profile-container .profile-left .user-pp {
+	width: 100%;
+}
+.profile-container .profile-left .user-pp small{
+	display: block;
+	text-align: center;
+	padding-top: 10px;
+}
+
+.profile-container .profile-left .user-pp small a{
+	text-decoration: none;
+	color: gray;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.profile-container .profile-left .user-pp img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    top: 0;
+    bottom: 0;
+    margin: 10px;
+}
+.profile-right {
+	padding: 20px;
+}
+.profile-right-body p{
+	text-align: justify;
+}
+/*user-detail CSS*/
+.user-course-section{
+	display: flex;
+	margin: auto;
+	margin-top: 30px;
+	width: 60%;
+	overflow: hidden;
+	overflow-x: scroll;
+	border: 1px solid grey;
+}
+.user-course-container{
+	width: 400px;
+	height: 100%;
+	margin: 20px;
+	display: block;
+	border: 1px solid #ccc;
+}
+
+.user-course-container:hover{
+	cursor: pointer;
+}
+
+
+@media all and (max-width: 800px){
+    .profile-container{
+        width: 100%;
+        margin: 0px;
+    }
+    .profile-container .profile-right{
+		background-color: #fff;
+	}
+	.profile-container .profile-left{
+		background-color: #fff;
+		width: 200px;
+	}
+	.profile-container .profile-left .user-pp img{
+    	width: 150px;
+    	height: 150px;
+	}
+	.user-course-section{
+		width: 100%;
+	}
+}

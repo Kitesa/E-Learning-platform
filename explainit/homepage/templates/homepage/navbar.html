@@ -6,51 +6,32 @@
           
        </div>
        </a>
-      {% if user.is_authenticated %}
          <div class="nav_bar_links">
             <ul>
                <div>
-                  <li><a href="#">COURSES</a></li>
+                  <li><a href="{% url 'courses:course-home-view' %}">COURSES</a></li>
                </div>
                <div>
-                  <li><a href="#">LIBRARY</a></li>
+                  <li><a href="{% url 'qanda:qanda-home-view' %}">Q&A</a></li>
                </div>
-               <div>
-                  <li><a href="#">Q&A</a></li>
+               {% if not user.is_authenticated %}
+                <div>
+                  <li><a href="{% url 'accounts:login-page'%}">LOGIN | SIGNUP</a></li>
                </div>
+               {% endif %}
             </ul>
          </div>
          <div class="humbergor_icon">
-            <img src="{% static 'images/wall1.png' %}"alt="" onclick="showHumbergerDropDown()">
+            <img src="{% static 'images/humburger.png' %}"alt="" onclick="showHumbergerDropDown()">
          </div>
+         {% if user.is_authenticated %}
          <div class="user_icon">
-            <img src="{% static 'images/user.jpg' %}"alt="" onclick="showDropDown()">
+            <img src="{{user.profile_pic.image.url}}"alt="" onclick="showDropDown()">
          </div>
-
+         {% endif %}
          {% include 'homepage_snippets/humberger_drop_down.html' %}
-                   {% include 'homepage_snippets/drop_down.html' %}
-      {% else %}
-
-      
-         <div class="nav_bar_links">
-            <ul>
-               <div>
-               <li><a href="#">COURSES</a></li>
-               </div>
-               <div>
-               <li><a href="#">TEACHERS</a></li>
-               </div>
-                <div>
-               <li><a href="#">ABOUT</a></li>
-               </div>
-                <div>
-               <li><a href="#">Q&A</a></li>
-               </div>
-               <div>
-               <li><a href="{% url 'accounts:register-page'%}">LOGIN | SIGNUP</a></li>
-               </div>
-            </ul>
-         </div>
-      {%endif%}
+         {% if user.is_authenticated %}
+            {% include 'homepage_snippets/drop_down.html' %}
+          {% endif %}
    </nav>
 </header>

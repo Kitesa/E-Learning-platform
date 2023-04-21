@@ -2,22 +2,18 @@
 <div class="drop-down-options" id="humberger-drop-downs">
    <div class="sub-drop-down-options">
          <div class="user-info">
-            <img src="{% static 'images/user.jpg' %}" alt="">
-            <h3><a href="">Home</a></h3>
+            <img src="{% static 'images/home.png' %}" alt="">
+            <h3><a href="{% url 'homepage:homepage' %}">Home</a></h3>
          </div>
          <hr>
          <div>
             <div class="user-info">
-               <img src="{% static 'images/user.jpg' %}" alt="">
-               <h3><a href="">Courses</a></h3>
+               <img src="{% static 'images/courses.png' %}" alt="">
+               <h3><a href="{% url 'courses:course-home-view' %}">Courses</a></h3>
             </div>
             <div class="user-info">
-               <img src="{% static 'images/user.jpg' %}" alt="">
-               <h3><a href="">Library</a></h3>
-            </div>
-            <div class="user-info">
-               <img src="{% static 'images/user.jpg' %}" alt="">
-               <h3><a href="">Q&A</a></h3>
+               <img src="{% static 'images/q_and_a.png' %}" alt="">
+               <h3><a href="{% url 'qanda:qanda-home-view' %}">Q&A</a></h3>
             </div>
           </div>
    </div>
