@@ -13,6 +13,7 @@ from django.contrib.auth.mixins import (LoginRequiredMixin,
 										)
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.core.cache import cache
 
 class OurCourseHomeView(ListView):
 	'''
@@ -75,6 +76,12 @@ class CourseDetailView(DetailView):
 		what should be sent to course detail view page
 		'''
 		course 	= self.get_object()
+		if cache.get('course'):
+			course = cache.get('course')
+		else:
+			cache.set('course', course)
+			course = cache.get('course')
+
 		context = super(CourseDetailView, self).get_context_data(*args, **kwargs)
 		context['title'] = course.course_title
 		return context
