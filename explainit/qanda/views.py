@@ -14,6 +14,7 @@ from .forms import (QuestionCreationForm,
 					)
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.cache import cache
 
 
 class QandaHomeView(ListView):
@@ -25,13 +26,19 @@ class QandaHomeView(ListView):
 
 	def get_context_data(self, *args, **kwargs):
 		user_questions = Question.objects.filter(author_id=self.request.user.pk)
-		question_from_user_enrolled_same_course = Question.objects.all()
 		suggested_questions = Question.objects.all()
+		if cache.get('user_questions') and cache.get('suggested_questions'):
+			user_questions = cache.get('user_questions')
+			suggested_questions = cache.get('suggested_questions')
+		else:
+			cache.set('user_questions', user_questions)
+			cache.set('suggested_questions', suggested_questions)
+			user_questions = cache.get('user_questions')
+			suggested_questions = cache.get('suggested_questions')
 		context = super(QandaHomeView, self).get_context_data(*args, **kwargs)
 		context['title'] = "ExplainIT-Q&A"
 		context['user_questions'] = user_questions
 		context['suggested_questions'] = suggested_questions
-		context['question_from_user_enrolled_same_course'] = question_from_user_enrolled_same_course
 		return context
 
 class QuestionDetailView(DetailView):
@@ -43,9 +50,10 @@ class QuestionDetailView(DetailView):
 	template_name = 'qanda/question_detail_view.html'
 
 	def get_context_data(self, *args, **kwargs):
-		splited_course_name = self.get_object()
+		
 		context = super(QuestionDetailView, self).get_context_data(*args, **kwargs)
 		context['title'] = self.get_object().question_title
+
 		return context
 
 class QuestionCreationView(LoginRequiredMixin, CreateView):
@@ -143,10 +151,13 @@ class AnswerCreationView(LoginRequiredMixin, CreateView):
 
 	def get_context_data(self, *args, **kwargs):
 		question = Question.objects.get(pk=self.kwargs['pk'])
-		answers = Answer.objects.filter(question_id=self.kwargs['pk'])
+		if cache.get('question'):
+			question = cache.get('question')
+		else:
+			cache.set('question', question)
+			question = cache.get('question')
 		context = super(AnswerCreationView, self).get_context_data(*args, **kwargs)
 		context['title'] = 'Answers to - ' + f'{question.question_title}'
-		context['answers'] = answers
 		context['question'] = question
 		return context
 
