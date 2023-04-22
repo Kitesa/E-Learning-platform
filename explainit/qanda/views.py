@@ -16,6 +16,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.cache import cache
 
+
 class QandaHomeView(ListView):
 	'''
 	A class based view to manage list of questions to be displayed
@@ -150,7 +151,6 @@ class AnswerCreationView(LoginRequiredMixin, CreateView):
 
 	def get_context_data(self, *args, **kwargs):
 		question = Question.objects.get(pk=self.kwargs['pk'])
-		
 		if cache.get('question'):
 			question = cache.get('question')
 		else:
