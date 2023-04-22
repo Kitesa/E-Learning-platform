@@ -1,7 +1,6 @@
 from django.urls import path, include
 from .views import (QandaHomeView,
                         #QUESTIONS VIEW IMPORT
-                        QuestionDetailView,
                         QuestionCreationView,
                         QuestionUpdateView,
                         QuestionDeletionView,
@@ -20,7 +19,6 @@ urlpatterns = [
       path("", QandaHomeView.as_view(), name="qanda-home-view"),
 
       #QUESTIONS
-      path('<int:pk>', QuestionDetailView.as_view(), name='question-detail-view'),
       path('new/', QuestionCreationView.as_view(), name='question-creation-view'),
       path('<int:pk>/update', QuestionUpdateView.as_view(), name='question-update-view'),
       path('<int:pk>/delete', QuestionDeletionView.as_view(), name='question-deletion-view'),
