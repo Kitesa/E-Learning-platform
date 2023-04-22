@@ -41,20 +41,6 @@ class QandaHomeView(ListView):
 		context['suggested_questions'] = suggested_questions
 		return context
 
-class QuestionDetailView(DetailView):
-	'''
-		A CBV that is used to show detail info about question
-	'''
-	model = Question
-	context_object_name = 'question'
-	template_name = 'qanda/question_detail_view.html'
-
-	def get_context_data(self, *args, **kwargs):
-		
-		context = super(QuestionDetailView, self).get_context_data(*args, **kwargs)
-		context['title'] = self.get_object().question_title
-
-		return context
 
 class QuestionCreationView(LoginRequiredMixin, CreateView):
 	'''
