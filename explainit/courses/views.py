@@ -28,9 +28,15 @@ class OurCourseHomeView(ListView):
 			A django built in func to handle what will be passed
 			to the template as what
 		'''
+		our_courses = OurCourse.objects.all()
+		if cache.get('our_courses'):
+			our_courses = cache.get('our_courses')
+		else:
+			cache.set('our_courses', our_courses)
+			our_courses = cache.get('our_courses')
 		context = super(OurCourseHomeView, self).get_context_data(*args, **kwargs)
 		context['title'] = "ExplainIT-Courses"
-		context['our_courses'] = OurCourse.objects.all()
+		context['our_courses'] = our_courses
 		return context
 
 class OurCourseCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
@@ -68,7 +74,6 @@ class OurCourseCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
 class CourseDetailView(DetailView):
 	model 			= OurCourse
-	context_object_name = 'course'
 	template_name	= 'courses/our_course_detail_view.html'
 
 	def get_context_data(self, *args, **kwargs):
@@ -84,6 +89,7 @@ class CourseDetailView(DetailView):
 
 		context = super(CourseDetailView, self).get_context_data(*args, **kwargs)
 		context['title'] = course.course_title
+		context['course'] = course
 		return context
 
 
