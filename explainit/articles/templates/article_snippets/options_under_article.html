@@ -1,0 +1,22 @@
+<footer class="question-footer">
+	<div>
+		<a href="{% url 'articles:likes' article.pk %}">
+			{% if user in article.likes.all %}
+				<b>Like</b>
+			{% else %}
+				Like
+			{% endif %}
+			{% if article.total_likes != '0' %}
+				({{article.total_likes}})
+			{% endif %}
+		</a>
+	</div>
+	{% if user == article.author %}
+	<div>
+		<a href="{% url 'articles:article-update-view' article.pk %}">Update</a>
+	</div>	
+	<div>
+		<a href="{% url 'articles:article-deletion-view' article.pk %}">Delete</a>
+	</div>
+	{% endif %}		
+</footer>

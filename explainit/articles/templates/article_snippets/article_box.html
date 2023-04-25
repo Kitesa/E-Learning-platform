@@ -1,0 +1,33 @@
+{% load humanize %}
+<section class="auth-section">
+	<div class="center-content">
+		{% include 'homepage_snippets/question_snippet.html'%}
+		{% for article in suggested_articles %}
+		<article class="question-container">
+			<header class="question-header">
+				<div class="user-pp">
+					<img src="{{article.author.profile_pic.url}}">
+				</div>
+				<div class="about-question-author">
+					<a href="{% url 'accounts:account-detail-view' article.author.pk %}">{{article.author.full_name}}</a>
+					<small>
+						{% if article.date_difference < '1' %}
+						{{article.date_updated|naturaltime}}
+						{% else %}
+						{{article.date_updated}}
+						{% endif %}
+					</small>
+				</div>
+			</header>
+			<div class="course-detail-article">
+				{% if article.article_banner.url %}
+				<img src="{{article.article_banner.url}}">
+				{% endif %}
+				<h1>{{article.article_title}}</h1>
+               	<p>{{ article.article_content|safe }}</p>
+			</div>
+		{% include 'article_snippets/options_under_article.html' %}
+		</article>
+		{% endfor %}
+	</div>
+</section>
