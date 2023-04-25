@@ -92,4 +92,3 @@ class CourseArticle(models.Model):
 	def get_absolute_url(self):
 		return reverse('courses:course-detail-view', args=[self.course.pk])
 
-	

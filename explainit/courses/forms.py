@@ -28,3 +28,5 @@ class CourseArticleCreationForm(forms.ModelForm):
 	class Meta:
 		model 		= CourseArticle
 		fields  	= ['article_content', 'article_identity_number']
+
+

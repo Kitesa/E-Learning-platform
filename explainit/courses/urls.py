@@ -28,4 +28,5 @@ urlpatterns = [
   	path("<str:pk>/update_article", CourseArticleUpdateView.as_view(), name="article-update-view"),
   	path("<str:pk>/delete_article", CourseArticleDeletionView.as_view(), name="article-delete-view"),
   	
+  
 ]
