@@ -15,7 +15,7 @@ from .forms import (QuestionCreationForm,
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.cache import cache
-
+from django.urls import reverse
 
 class QandaHomeView(ListView):
 	'''
@@ -27,6 +27,7 @@ class QandaHomeView(ListView):
 	def get_context_data(self, *args, **kwargs):
 		user_questions = Question.objects.filter(author_id=self.request.user.pk)
 		suggested_questions = Question.objects.all()
+		
 		if cache.get('user_questions') and cache.get('suggested_questions'):
 			user_questions = cache.get('user_questions')
 			suggested_questions = cache.get('suggested_questions')
@@ -109,6 +110,12 @@ class QuestionDeletionView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	success_url = '/'
 	template_name = 'qanda/question_delete_page.html'
 	
+	def get_success_url(self):
+		'''
+		where to redirect the user after successful deletion of the question
+		'''
+		return reverse( 'qanda:qanda-home-view')
+			
 	def form_valid(self, form):
 		messages.success(self.request, "Question deleted successfully")
 		return super().form_valid(form)	

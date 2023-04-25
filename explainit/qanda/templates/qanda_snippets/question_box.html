@@ -1,7 +1,6 @@
 {% load humanize %}
 <section class="auth-section">
 		<div class="center-content">
-			{% include 'homepage_snippets/question_snippet.html'%}
 			{% for question in suggested_questions %}
 			<article class="question-container">
 				<header class="question-header">
@@ -20,7 +19,7 @@
 					</div>
 				</header>
 				<div class="question-body">
-                   		 <p>{{ question.question_content|safe }}</p>
+                   	<p>{{ question.question_content|safe }}</p>
 				</div>
 			{% include 'qanda_snippets/options_under_question.html' %}
 			</article>
