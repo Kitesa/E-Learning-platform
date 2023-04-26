@@ -26,6 +26,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('courses/', include('courses.urls')),
     path('questions/', include('qanda.urls')),
+    path('articles/', include('articles.urls')),
     path('admin/', admin.site.urls),
 
     #PASSWORD

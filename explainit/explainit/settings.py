@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'homepage',
     'courses',
     'qanda',
+    'articles',
 
     #DJANGO BUILTIN APPS
     'django.contrib.admin',
@@ -54,12 +55,13 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor',
     'crispy_bootstrap4',
+    'hitcount',
 ]
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
     'API_KEY': os.environ.get('API_KEY'),
-    'API_SECRET': os.environ.get('API_SECRET')
+    'API_SECRET': os.environ.get('API_SECRET'),
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 #CRISPY TEMPLATE PACK FOR FORM RENDERING
@@ -74,16 +76,18 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": "redis://127.0.0.1:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
-        }
+        },
+        "KEY_PREFIX": "explainit"
     }
 }
-
+CACHE_TTL = 60 * 1500
 ROOT_URLCONF = 'explainit.urls'
 
 TEMPLATES = [
@@ -182,7 +186,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_FROM = os.environ.get('EMAIL_FROM')
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('API_SECRET')
+EMAIL_FROM = os.environ.get('EMAIL_FROM'),
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER'),
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD'),
 
