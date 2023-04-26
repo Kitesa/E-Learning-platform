@@ -11,6 +11,25 @@
 			{% endif %}
 		</a>
 	</div>
+	<div>
+		<a href="{% url 'articles:dislikes' article.pk %}">
+			{% if user in article.dislikes.all %}
+				<b>Dislike</b>
+			{% else %}
+				Dislike
+			{% endif %}
+			{% if article.total_dislikes != '0' %}
+				({{article.total_dislikes}})
+			{% endif %}
+		</a>
+	</div>
+	<div>
+		<a href="{% url 'articles:article-question-creation-view' article.pk %}">Question
+			{% if article.questions.all.count != 0 %}
+				s({{article.questions.all.count}})
+			{% endif %}
+		</a>
+	</div>	
 	{% if user == article.author %}
 	<div>
 		<a href="{% url 'articles:article-update-view' article.pk %}">Update</a>

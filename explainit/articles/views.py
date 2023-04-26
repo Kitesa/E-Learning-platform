@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import (LoginRequiredMixin,
 										UserPassesTestMixin,
 										)
 from .forms import (ArticleCreationForm,
-
+					ArticleQuestionCreationForm,
 					)
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -126,3 +126,98 @@ def like_article(request, pk):
             message =messages.success(request, f'You liked the article')
             return redirect(request.META.get('HTTP_REFERER'))
     return redirect(request.META.get('HTTP_REFERER'))
+
+@login_required
+def dislike_article(request, pk):
+    if request.method == 'GET':
+        user = request.user
+        article = get_object_or_404(Article, pk=pk)
+
+        if article.dislikes.filter(id=user.id).exists():
+            article.dislikes.remove(user)
+            message=messages.success(request,f'You removed your dis-likes from the question')
+        else:
+            article.dislikes.add(user)
+            message =messages.success(request, f'You disliked the article')
+            return redirect(request.META.get('HTTP_REFERER'))
+    return redirect(request.META.get('HTTP_REFERER'))
+
+
+class ArticleQuestionCreationView(LoginRequiredMixin, CreateView):
+	'''
+	A CBV used to create question on an article
+	'''
+	model 			= ArticleQuestion
+	form_class 		= ArticleQuestionCreationForm
+	template_name 	= 'article_questions/article_question_create_page.html'
+    
+
+	def form_valid(self, form):
+		form.instance.article_id = self.kwargs['pk']
+		form.instance.who_asked = self.request.user
+		messages.success(self.request, "Question added successfully")
+		return super().form_valid(form)
+
+	def get_context_data(self, *args, **kwargs):
+		article = Article.objects.get(pk=self.kwargs['pk'])
+		context = super(ArticleQuestionCreationView, self).get_context_data(*args, **kwargs)
+		context['title'] = 'Add-question'
+		context['article'] = article
+		return context
+
+
+class ArticleQuestionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+	'''
+	A CBV to update a question on an article
+	'''
+	model = ArticleQuestion
+	form_class = ArticleQuestionCreationForm
+	template_name = 'article_questions/article_question_update_view.html'
+	
+	def test_func(self):
+		article_question = self.get_object()
+		if self.request.user == article_question.who_asked:
+			return True
+		return False
+
+	def form_valid(self, form):
+		messages.success(self.request, "Question updated successfully")
+		return super().form_valid(form)
+
+	def get_context_data(self, *args, **kwargs):
+		context = super(ArticleQuestionUpdateView, self).get_context_data(*args, **kwargs)
+		context['title'] = 'Update-article'
+		return context
+
+
+class ArticleQuestionDeletionView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+	'''
+	A CBV to delete an article question
+	'''
+	model = ArticleQuestion
+
+	template_name = 'article_questions/article_question_delete_page.html'
+
+	def get_success_url(self):
+		'''
+		where to redirect the user after successful deletion of the course
+		'''
+		question = self.get_object()
+		return reverse( 'articles:article-question-creation-view', args=[question.article.pk])
+
+	def form_valid(self, form):
+		messages.success(self.request, "Question deleted successfully")
+		return super().form_valid(form)	
+
+	def test_func(self):
+		question = self.get_object()
+		if self.request.user == question.who_asked:
+			return True
+		return False
+	
+	def get_context_data(self, *args, **kwargs):
+		question = self.get_object()
+		context = super(ArticleQuestionDeletionView, self).get_context_data(*args, **kwargs)
+		context['title'] = 'Delete-question'
+		context['question'] = question
+		return context

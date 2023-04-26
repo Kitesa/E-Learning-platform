@@ -1,0 +1,10 @@
+<footer class="question-footer">
+	{% if user == question.who_asked %}
+	<div>
+		<a href="{% url 'articles:article-question-update-view' question.pk %}">Update</a>
+	</div>	
+	<div>
+		<a href="{% url 'articles:article-question-deletion-view' question.pk %}">Delete</a>
+	</div>
+	{% endif %}		
+</footer>

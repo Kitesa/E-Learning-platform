@@ -6,7 +6,7 @@
 		<article class="question-container">
 			<header class="question-header">
 				<div class="user-pp">
-					<img src="{{article.author.profile_pic.url}}">
+					<img src="{{article.author.profile_pic.image.url}}">
 				</div>
 				<div class="about-question-author">
 					<a href="{% url 'accounts:account-detail-view' article.author.pk %}">{{article.author.full_name}}</a>
@@ -17,6 +17,7 @@
 						{{article.date_updated}}
 						{% endif %}
 					</small>
+					<small>Article</small>
 				</div>
 			</header>
 			<div class="course-detail-article">

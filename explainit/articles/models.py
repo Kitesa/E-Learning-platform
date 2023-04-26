@@ -27,6 +27,7 @@ class Article(models.Model):
 	author 				= models.ForeignKey(settings.AUTH_USER_MODEL, 
     					on_delete=models.CASCADE)
 	likes				= models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likes')
+	dislikes			= models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='dislikes')
 	
 	@property
 	def total_likes(self):
@@ -34,6 +35,13 @@ class Article(models.Model):
 		a function that returns total number of likes on article
 		'''
 		return f'{self.likes.count()}'
+
+	@property
+	def total_dislikes(self):
+		'''
+		a function that returns total number of dislikes on article
+		'''
+		return f'{self.dislikes.count()}'
 
 	@property
 	def date_difference(self):
@@ -56,8 +64,8 @@ class Article(models.Model):
 		if self.article_banner.url:
 			img_read = storage.open(self.article_banner.name, "r")
 			img = Image.open(img_read)
-			if img.height > 700 or img.width > 400:
-				output_size = (400, 700)
+			if img.height > 800 or img.width > 400:
+				output_size = (400, 800)
 				imageBuffer = BytesIO()
 				img.thumbnail(output_size)
 				img = img.convert('RGB')
@@ -77,11 +85,11 @@ class ArticleQuestion(models.Model):
 	'''
 	A db model to manage the questions to a article
 	'''
-	article 			= models.ForeignKey(Article, related_name='questins', on_delete=models.CASCADE)
-	content 			= RichTextField()
-	who_asked 			= models.ForeignKey(settings.AUTH_USER_MODEL, related_name='asker', on_delete=models.CASCADE)
-	date_asked			= models.DateTimeField(auto_now_add=True)
-	date_updated 		= models.DateTimeField(auto_now=True)
+	article 					= models.ForeignKey(Article, related_name='questions', on_delete=models.CASCADE)
+	content 					= RichTextField()
+	who_asked 					= models.ForeignKey(settings.AUTH_USER_MODEL, related_name='asker', on_delete=models.CASCADE)
+	date_asked					= models.DateTimeField(auto_now_add=True)
+	date_updated 				= models.DateTimeField(auto_now=True)
 
 
 	class Meta:
@@ -91,4 +99,4 @@ class ArticleQuestion(models.Model):
 		return f'questions to {self.article.article_title}'
 
 	def get_absolute_url(self):
-		return reverse('articles:question-creation-view', args=[self.article.pk])
+		return reverse('articles:article-question-creation-view', args=[self.article.pk])
