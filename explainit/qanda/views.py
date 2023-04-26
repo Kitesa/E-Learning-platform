@@ -27,19 +27,19 @@ class QandaHomeView(ListView):
 	def get_context_data(self, *args, **kwargs):
 		user_questions = Question.objects.filter(author_id=self.request.user.pk)
 		suggested_questions = Question.objects.all()
-		
-		if cache.get('user_questions') and cache.get('suggested_questions'):
+		filtered_questions = user_questions | suggested_questions
+		if cache.get('filtered_questions'):
 			user_questions = cache.get('user_questions')
-			suggested_questions = cache.get('suggested_questions')
+			filtered_questions = cache.get('filtered_questions')
 		else:
 			cache.set('user_questions', user_questions)
-			cache.set('suggested_questions', suggested_questions)
+			cache.set('filtered_questions', filtered_questions)
 			user_questions = cache.get('user_questions')
-			suggested_questions = cache.get('suggested_questions')
+			filtered_questions = cache.get('filtered_questions')
 		context = super(QandaHomeView, self).get_context_data(*args, **kwargs)
 		context['title'] = "ExplainIT-Q&A"
 		context['user_questions'] = user_questions
-		context['suggested_questions'] = suggested_questions
+		context['filtered_questions'] = filtered_questions
 		return context
 
 

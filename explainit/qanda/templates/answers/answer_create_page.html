@@ -38,12 +38,13 @@
                     <div class="about-question-author">
                         <a href="{% url 'accounts:account-detail-view' answer.who_answered.pk %}">{{answer.who_answered.full_name}}</a>
                         <small>
-                            {{answer.date_answered}}
+                            Answered on : {{answer.date_answered}}
                         </small>
                     </div>
                 </header>
-
-                <p>{{ answer.content|safe }}</p>
+                <div class="answer-body">
+                    <p>{{ answer.content|safe }}</p>
+                </div>
                     {% if user == answer.who_answered %}
                          {% include 'qanda_snippets/options_under_answer.html' %}
                     {% endif %}
