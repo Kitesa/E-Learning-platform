@@ -82,6 +82,7 @@ class CourseArticle(models.Model):
 	article_content		= RichTextField(blank=True, null=True)
 	date_created 		= models.DateTimeField(auto_now_add=True, blank=True, null=True)
 	article_identity_number = models.IntegerField(null=True)
+	add_options_to_this_article = models.BooleanField(default=1)
 
 	class Meta:
 		ordering = ['article_identity_number', ]
