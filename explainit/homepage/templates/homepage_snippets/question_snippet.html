@@ -5,9 +5,13 @@
 			{% endif %}
 		</div>
 		<div class="question-sth-you-know-form-container">
-			<a href="{% url 'qanda:question-creation-view' %}" >
-			<div class="question-sth-you-know-form">	
+			
+			<div class="question-sth-you-know-form">
+			<a href="{% url 'qanda:question-creation-view' %}" >	
 					Ask question...
+			</a>
+			<a href="{% url 'articles:article-creation-view' %}" >
+					Publish article...
 			</div>
 			</a>
 		</div>

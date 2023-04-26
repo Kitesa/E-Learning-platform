@@ -12,6 +12,9 @@
                   <li><a href="{% url 'courses:course-home-view' %}">COURSES</a></li>
                </div>
                <div>
+                  <li><a href="{% url 'articles:article-home-view' %}">ARTICLES</a></li>
+               </div>
+               <div>
                   <li><a href="{% url 'qanda:qanda-home-view' %}">Q&A</a></li>
                </div>
                {% if not user.is_authenticated %}
