@@ -1,14 +1,14 @@
 {% extends 'homepage/base.html' %}
 {% block mainbody %}
 {% load static %}
-
+{% load hitcount_tags %}
 <!-- OUR COURSES STARTS HERE -->
 <section class="course-detail-container">
     <div class="course-article-header-container">
        <div class="course-header">
            <small><a href="">{{course.course_title}}
             {% if course.total_students != 0%}
-              ({{course.total_students}}-Students){% endif %}</a></small>
+              ({{course.total_students}} Students {% endif %} and {% get_hit_count for course %}-views)</a></small>
            <small>By <a href="{% url 'accounts:account-detail-view' course.course_instructor.pk %}"><strong>{{course.course_instructor.full_name}}</strong></a></small>
             <small><i>Published on {{course.date_created}}</i></small>
             {% if user == course.course_instructor %}

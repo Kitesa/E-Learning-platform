@@ -14,6 +14,7 @@ from django.contrib.auth.mixins import (LoginRequiredMixin,
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.core.cache import cache
+from hitcount.views import HitCountDetailView
 
 class OurCourseHomeView(ListView):
 	'''
@@ -22,7 +23,7 @@ class OurCourseHomeView(ListView):
 	'''
 	model 			= OurCourse
 	template_name 	= 'courses/our_courses_home_view.html'
-	
+
 
 	def get_context_data(self, *args, **kwargs):
 		'''
@@ -47,6 +48,7 @@ class OurCourseCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 	model 			= OurCourse
 	form_class		= OurCourseCreationForm
 	template_name 	= 'courses/course_creation_page.html'
+
 
 	def form_valid(self, form):
 		'''
@@ -73,10 +75,10 @@ class OurCourseCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 			return True
 		return False
 
-class CourseDetailView(DetailView):
+class CourseDetailView(HitCountDetailView, DetailView):
 	model 			= OurCourse
 	template_name	= 'courses/our_course_detail_view.html'
-
+	count_hit		= True
 	def get_context_data(self, *args, **kwargs):
 		'''
 		what should be sent to course detail view page
