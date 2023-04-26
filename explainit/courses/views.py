@@ -22,6 +22,7 @@ class OurCourseHomeView(ListView):
 	'''
 	model 			= OurCourse
 	template_name 	= 'courses/our_courses_home_view.html'
+	
 
 	def get_context_data(self, *args, **kwargs):
 		'''
