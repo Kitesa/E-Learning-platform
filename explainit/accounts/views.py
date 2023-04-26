@@ -22,22 +22,24 @@ from django.contrib.auth.mixins import (LoginRequiredMixin,
 from accounts.models import Account
 
 #ACCOUNT-ACTIVATION
-from .tokens import account_activation_token
+from .tokens import AccountActivationToken
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 
-def Account_activation_view(request, uidb64, token):
-	User = get_user_model()
+
+
+def AccountActivationView(request, uidb64, token):
 	try:
-		uid = force_str(urlsafe_base64_decode(uidb64))
-		user = User.objects.get(pk=uid)
+		uid = int(force_str(urlsafe_base64_decode(uidb64)))
+		user = Account.objects.get(pk=uid)
+		print(user)
 	except:
 		user = None
 
-	if user is not None and account_activation_token.check_token(user, token):
+	if user is not None and AccountActivationToken.check_token(user, token):
 		user.is_active = True
 		user.save()
 
@@ -48,13 +50,13 @@ def Account_activation_view(request, uidb64, token):
 
 	return redirect('homepage:homepage')
 
-def activateEmail(request, user, to_email):
+def sendEmail(request, user, to_email):
 	mail_subject = "Activate your user account."
 	message = render_to_string("accounts/account_activation_page.html", {
 		'user': user.username,
 		'domain': get_current_site(request).domain,
 		'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-		'token': account_activation_token.make_token(user),
+		'token': AccountActivationToken.make_token(user),
 		"protocol": 'https' if request.is_secure() else 'http'
 	})
 	email = EmailMessage(mail_subject, message, to=[to_email])
@@ -77,9 +79,8 @@ def AccountCreationPageView(request, *args, **kwargs):
 			form = AccountCreationForm(request.POST)
 			if form.is_valid():
 				user = form.save()
-				user.is_active	=False
 				email = form.cleaned_data.get('email')
-				activateEmail(request, user, email)
+				sendEmail(request, user, email)
 
 				return redirect('homepage:homepage')            
 		else:
@@ -201,3 +202,4 @@ def followunfollow(request, pk):
             followers = {'total_followers':account.followers}
             return redirect(request.META.get('HTTP_REFERER'))
     return redirect(request.META.get('HTTP_REFERER'))
+
