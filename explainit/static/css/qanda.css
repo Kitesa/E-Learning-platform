@@ -99,6 +99,18 @@
 .question-body{
 	margin: 10px;
 }
+.question-body p{
+	text-align: justify;
+	padding: 0px;
+	margin: 20px;
+}
+.answer-body{
+	padding-left: 50px;
+}
+.answer-body p{
+	padding: 0px 20px;
+	text-align: justify;
+}
 .question-footer{
 	min-height: 60px;
 	background-color: #F5F5F5;
