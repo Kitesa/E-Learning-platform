@@ -2,7 +2,7 @@
 <div class="drop-down-options" id="drop-downs">
    <div class="sub-drop-down-options">
          <div class="user-info">
-            <img src="{{user_image}}" alt="">
+            <img src="{{user.profile_pic.image.url}}" alt="">
             <h3><a href="{% url 'accounts:user-profile-home-view' %}">{{user.full_name}}</a></h3>
          </div>
          <hr>

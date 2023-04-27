@@ -11,8 +11,6 @@ def HomePageView(request):
 	our_teachers = Account.objects.filter(is_our_teacher=1)
 	context['suggested_questions'] = suggested_questions
 	if request.user.is_authenticated:
-		user_image = request.user.profile_pic.image.url
-		context['user_image'] = user_image
 		context['our_courses'] = our_courses 
 		return render(request, 'homepage/homepage.html', context)
 	else:
