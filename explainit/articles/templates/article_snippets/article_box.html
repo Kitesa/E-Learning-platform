@@ -25,7 +25,13 @@
 				<img src="{{article.article_banner.url}}">
 				{% endif %}
 				<h1>{{article.article_title}}</h1>
-               	<p>{{ article.article_content|safe }}</p>
+
+               	{% if article.article_content|length > 200%}
+                 	{{article.article_content|safe|truncatechars:200 }}
+                 	<a href="{% url 'articles:article-question-creation-view' article.pk %}"><button  id="myBtn">read detail</button></a>
+                {%else%}
+               		{{ article.article_content|safe }}
+                {%endif%}
 			</div>
 		{% include 'article_snippets/options_under_article.html' %}
 		</article>

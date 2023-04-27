@@ -26,7 +26,7 @@
 	<div>
 		<a href="{% url 'articles:article-question-creation-view' article.pk %}">Question
 			{% if article.questions.all.count != 0 %}
-				s({{article.questions.all.count}})
+				({{article.questions.all.count}})
 			{% endif %}
 		</a>
 	</div>	

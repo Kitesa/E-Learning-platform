@@ -1,7 +1,9 @@
 {% extends 'homepage/base.html' %}
 {% load crispy_forms_tags %}
-{% block mainbody%}
+{% load hitcount_tags %}
 {% load humanize %}
+{% block mainbody%}
+
 <section class="auth-section">
         <div class="center-content">
             {% include 'homepage_snippets/question_snippet.html'%}
@@ -19,6 +21,7 @@
                             {{article.date_updated}}
                             {% endif %}
                         </small>
+                        <small>{% get_hit_count for article %}-views</small>
                     </div>
                 </header>
                 <div class="question-body">
