@@ -21,7 +21,11 @@
 					</div>
 				</header>
 				<div class="question-body">
-                   	<p>{{ question.question_content|safe }}</p>
+                   	{% if question.question_content|length > 400%}
+                   		<p>{{ question.question_content|safe|truncatechars:400 }}<a href="{% url 'qanda:answer-creation-view' question.pk %}"><button  id="myBtn">read detail</button></a></p>
+                   	{% else %}
+                   		<p>{{ question.question_content|safe}}</p>
+                   	{% endif %}
 				</div>
 			{% include 'qanda_snippets/options_under_question.html' %}
 			</article>
