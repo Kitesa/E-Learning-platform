@@ -5,4 +5,7 @@
 
 	{% include 'qanda_snippets/question_box.html' %}
 	{% include 'homepage_snippets/home_page_courses.html' %}
+	{% for article in articles %}
+	{{article.article_title}}
+	{% endfor %}
 {% endblock mainbody%}
