@@ -126,6 +126,16 @@
 	display: inline-block;
 	vertical-align: middle;
 }
+#myBtn{
+	background-color: inherit;
+	border-style: none;
+	font-style: italic;
+}
+#myBtn:hover{
+	cursor: pointer;
+	color: blue;
+}
+
 .question-footer div a{
 	text-decoration: none;
 	color: gray;
@@ -133,6 +143,9 @@
 	font-family: sans-serif;
 }
 
+#more {
+	display: none;
+}
 
 @media all and (max-width: 900px){
 	.auth-section{
