@@ -305,3 +305,18 @@ def enroll_courses(request, pk):
 			total_students = {'total_students':course.total_students}
 			return redirect(request.META.get('HTTP_REFERER'))
 	return redirect(request.META.get('HTTP_REFERER'))
+
+class CourseStudentListView(DetailView):
+	model 			= OurCourse
+	template_name	= 'courses/course_student_list_view.html'
+
+	def get_context_data(self, *args, **kwargs):
+		'''
+		what should be sent to course student list page
+		'''
+		course 	= self.get_object()
+
+		context = super(CourseStudentListView, self).get_context_data(*args, **kwargs)
+		context['title'] = f'{course.course_title}-Students'
+		context['course'] = course
+		return context

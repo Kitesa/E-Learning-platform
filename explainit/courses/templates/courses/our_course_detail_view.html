@@ -6,7 +6,7 @@
 <section class="course-detail-container">
     <div class="course-article-header-container">
        <div class="course-header">
-           <small><a href="">{{course.course_title}}
+           <small><a href="{% url 'courses:course-students' course.pk %}">{{course.course_title}}
             {% if course.total_students != 0%}
               {{course.total_students}}-students {% endif %},{% get_hit_count for course %}-views</a></small>
            <small>By <a href="{% url 'accounts:account-detail-view' course.course_instructor.pk %}"><strong>{{course.course_instructor.full_name}}</strong></a></small>

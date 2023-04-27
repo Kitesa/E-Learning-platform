@@ -1,0 +1,25 @@
+{% extends 'homepage/base.html' %}
+{% load static %}
+{% block mainbody%}
+{% load humanize %}
+<section class="auth-section">
+	<div class="center-content">
+		{% for student in course.students.all %}
+		<article class="question-container">
+			<header class="question-header">
+				<div class="user-pp">
+					<img src="{{student.profile_pic.image.url}}">
+				</div>
+				<div class="about-question-author">
+					<a href="{% url 'accounts:account-detail-view' student.pk %}">{{student.full_name}}</a>
+					<small>
+
+					</small>
+				</div>
+			</header>
+			{%endfor%}
+		</article>
+	</div>
+</section>
+
+{%endblock mainbody%}
