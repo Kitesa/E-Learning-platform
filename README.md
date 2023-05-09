@@ -22,3 +22,18 @@ This website aplication allow anonymous user to get access to our courses withou
 =====================================================================================================================================
 ![TECHNOLOGY USED4](https://github.com/Kitesa/E-Learning-platform/assets/67538957/38d56096-7416-4d7d-b1b6-5b7ed84f198c)
 
+
+
+**HOW TO USE **
+1) clone the repository to free virtual environment on your computer
+2) Go to explainit directory in which requiremennt.txt is located
+3) run pip install -r requierements.txt
+4) run python manage.py runserver
+5) open your browser and type "127.0.0.1:8000"
+6) ENJOY
+
+
+**ANY PROBLEM?**
+
+_CONTACT AT "kitesamerga@gmail.com"_
+
