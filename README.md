@@ -24,7 +24,8 @@ This website aplication allow anonymous user to get access to our courses withou
 
 
 
-**HOW TO USE **
+**HOW TO USE**
+
 1) clone the repository to free virtual environment on your computer
 2) Go to explainit directory in which requiremennt.txt is located
 3) run pip install -r requierements.txt
@@ -33,7 +34,7 @@ This website aplication allow anonymous user to get access to our courses withou
 6) ENJOY
 
 
-**ANY PROBLEM?**
+**ANY PROBLEM? OR WANT TO CONTRIBUTE ?**
 
 _CONTACT AT "kitesamerga@gmail.com"_
 
