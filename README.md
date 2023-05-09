@@ -5,8 +5,7 @@ The project is designed and programmed using python-django, javascript, html, cs
 
 This website aplication allow anonymous user to get access to our courses without registration, read articles in our courses, see questions and answers of authenticated users. but cannot ask or answer questions, annot enroll the course unless registered.
 
-=================================================================
-requerements
+
 **WEB ARCHITECTURE**
 
 
