@@ -11,3 +11,7 @@ This website aplication allow anonymous user to get access to our courses withou
 
 ![webstructure](https://github.com/Kitesa/E-Learning-platform/assets/67538957/eb349d3f-fc52-4c63-9412-584a591b41e4)
 
+**TECHNOLOGY USED**
+
+
+![TECHNOLOGY_USED1](https://github.com/Kitesa/E-Learning-platform/assets/67538957/5f2dc4e7-d968-4f00-ac0b-26575d493646)
