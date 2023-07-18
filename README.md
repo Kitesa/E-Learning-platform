@@ -38,3 +38,5 @@ This website aplication allow anonymous user to get access to our courses withou
 
 _CONTACT AT "kitesamerga@gmail.com"_
 
+see deployed version of the app 
+https://feedback.blueboard.tech
