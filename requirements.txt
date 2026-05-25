@@ -1,6 +1,5 @@
 asgiref==3.6.0
 async-timeout==4.0.2
-backports.zoneinfo==0.2.1
 certifi==2022.12.7
 charset-normalizer==3.1.0
 cloudinary==1.32.0
